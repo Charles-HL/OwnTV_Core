@@ -186,5 +186,39 @@
     <string name="companion_send_to_tv">Надіслати на ТВ</string>
     <string name="companion_saved_source_body"><xliff:g id="name">%1$s</xliff:g> тепер на екрані «Додати джерело» на телевізорі. Перевірте там дані й натисніть «Почати імпорт» на пульті дистанційного керування.</string>
     <string name="companion_add_description">Заповніть одне джерело й натисніть «Надіслати на ТВ». Воно зʼявиться на телевізорі, тож візьміть пульт і натисніть там «Почати імпорт», коли будете готові.</string>
-    <string name="companion_default_playlist">Типовий плейлист</string>
+    <string name="companion_default_playlist">Плейлист за замовчуванням</string>
+    <string name="companion_sync_xtream_hint">Що синхронізувати: «Одразу» імпортується першим, «У фоні» синхронізується у фоновому режимі, «Ніколи» не завантажується.</string>
+    <string name="companion_sync_stalker_hint">Що синхронізувати: для «ТБ наживо» за замовчуванням «Одразу», для «Фільмів» і «Серіалів» «У фоні» (VOD у Stalker повільний).</string>
+    <string name="companion_saved_send_another">Надіслати ще одне джерело</string>
+    <string name="companion_edit_page_title">OwnTV — Редагувати джерело</string>
+    <string name="companion_edit_heading">Редагувати <xliff:g id="name">%1$s</xliff:g></string>
+    <string name="companion_edit_description">Змініть потрібне й натисніть «Надіслати на ТВ». Поле, яке лишилося порожнім, зберігає поточне значення. Зміни зʼявляться на телевізорі, там натисніть «Зберегти» на пульті.</string>
+    <string name="companion_keep_current">Залиште порожнім, щоб зберегти поточне значення</string>
+    <string name="companion_saved_edit_body">Зміни до <xliff:g id="name">%1$s</xliff:g> тепер на екрані редагування на телевізорі. Перевірте їх там і натисніть «Зберегти» на пульті.</string>
+    <string name="companion_saved_edit_again">Змінити ще щось</string>
+    <string name="companion_saved_backup_body">Ваша резервна копія вже на телевізорі. Візьміть пульт і виберіть, які частини відновити.</string>
+    <string name="companion_saved_backup_link">Надіслати інший файл</string>
+    <string name="companion_saved_image_body">Ваше зображення тепер слугує тлом інтерфейсу на телевізорі.</string>
+    <string name="companion_saved_image_link">Надіслати інше зображення</string>
+    <string name="companion_backup_page_title">OwnTV — Відновити резервну копію</string>
+    <string name="companion_backup_heading">Відновити з резервної копії</string>
+    <string name="companion_backup_description">Виберіть файл резервної копії OwnTV (.own або старіший .json) і натисніть «Надіслати на ТВ». Його буде передано на телевізор, там візьміть пульт і виберіть, що відновити.</string>
+    <string name="companion_backup_file">Файл резервної копії</string>
+    <string name="companion_choose_backup">Спершу виберіть файл резервної копії.</string>
+    <string name="companion_playlist_file">Або завантажте файл плейлиста</string>
+    <string name="companion_playlist_url_or_file">Введіть URL-адресу плейлиста або виберіть файл.</string>
+    <string name="companion_sending">Надсилання…</string>
+    <string name="companion_upload_failed">Не вдалося надіслати (HTTP <xliff:g id="status">%1$d</xliff:g>). Перевірте PIN-код і спробуйте ще раз.</string>
+    <string name="companion_could_not_reach">Не вдалося зв\'язатися з телевізором. Переконайтеся, що ви в тій самій мережі Wi-Fi, і спробуйте ще раз.</string>
+    <string name="companion_could_not_read">Не вдалося прочитати цей файл.</string>
+    <string name="companion_image_page_title">OwnTV — Фонове зображення</string>
+    <string name="companion_image_heading">Надіслати фонове зображення</string>
+    <string name="companion_image_description">Виберіть фото (JPG, PNG або WebP) і натисніть «Надіслати на ТВ». Воно стане тлом інтерфейсу телевізора.</string>
+    <string name="companion_image_file">Файл зображення</string>
+    <string name="companion_choose_image">Спершу виберіть зображення.</string>
+    <string name="companion_image_too_large">Це зображення завелике (максимум 25 МБ).</string>
+    <string name="companion_download_page_title">OwnTV — Завантажити резервну копію</string>
+    <string name="companion_download_heading">Завантажте свою резервну копію</string>
+    <string name="companion_download_description">Ваш телевізор підготував файл резервної копії OwnTV. Натисніть кнопку, щоб зберегти його на цьому пристрої (owntv-backup.own). Зберігайте його в надійному місці: пізніше з нього можна буде відновитися.</string>
+    <string name="companion_download_backup">Завантажити резервну копію</string>
 </resources>

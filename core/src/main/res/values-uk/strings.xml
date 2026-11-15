@@ -183,9 +183,9 @@
     <string name="sync_error_not_found">Не знайдено на сервері. Перевірте URL.</string>
     <string name="sync_error_server">Помилка сервера. Будь ласка, спробуйте ще раз пізніше.</string>
     <string name="sync_error_secure">Не вдалося встановити безпечне з\'єднання — сертифікат сервера може бути недійсним.</string>
-    <string name="sync_error_malformed_guide">Дані телепрограми з сервера пошкоджені. Частину з них, можливо, вдалося завантажити — спробуйте ще раз або перевірте URL-адресу EPG.</string>
-    <string name="sync_error_guide_empty">Телепрограма зараз порожня. Можливо, провайдер її ще не опублікував — спробуйте ще раз пізніше.</string>
-    <string name="sync_error_guide_no_matching_channels">Жоден канал із цієї телепрограми поки не збігається з каналами вашого плейлиста. Відкрийте «Програму передач» та скористайтеся «Автододаванням EPG», щоб зіставити їх за назвою.</string>
+    <string name="sync_error_malformed_guide">Дані програми передач з сервера пошкоджені. Частину з них, можливо, вдалося завантажити — спробуйте ще раз або перевірте URL-адресу EPG.</string>
+    <string name="sync_error_guide_empty">Програма передач зараз порожня. Можливо, провайдер її ще не опублікував — спробуйте ще раз пізніше.</string>
+    <string name="sync_error_guide_no_matching_channels">Жоден канал з цієї програми передач поки не збігається з каналами вашого плейлиста. Відкрийте «Програму передач» та скористайтеся «Автододаванням EPG», щоб зіставити їх за назвою.</string>
     <string name="common_minutes">Хвилини</string>
     <string name="common_size_mb"><xliff:g id="size">%1$s</xliff:g> МБ</string>
     <string name="common_size_gb"><xliff:g id="size">%1$s</xliff:g> ГБ</string>
