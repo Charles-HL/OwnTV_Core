@@ -101,7 +101,7 @@
     <string name="setup_edit_source">Редагувати джерело</string>
     <string name="setup_edit_from_phone">Редагувати з іншого пристрою</string>
     <string name="setup_edit_source_description">Оновіть дані цього джерела або змініть налаштування автооновлення.</string>
-    <string name="setup_byo_source_description">OwnTV — це програвач. Додайте власне джерело Xtream, M3U або Stalker.</string>
+    <string name="setup_byo_source_description">OwnTV — це плеєр. Додайте власне джерело Xtream, M3U або Stalker.</string>
     <string name="setup_xtream">Xtream</string>
     <string name="setup_m3u">M3U / M3U8</string>
     <string name="setup_stalker_mac">Stalker (MAC)</string>
@@ -121,7 +121,7 @@
     <string name="setup_playlist_path_unsupported">Цей локальний шлях до плейлиста не підтримується.</string>
     <string name="setup_local_file_choose">Вибрати локальний файл .m3u / .m3u8…</string>
     <string name="setup_local_file_prefix">Локальний файл: <xliff:g id="name">%1$s</xliff:g></string>
-    <string name="setup_portal_url">Портал URL</string>
+    <string name="setup_portal_url">URL порталу</string>
     <string name="setup_portal_example">http://host:port/c/</string>
     <string name="setup_mac_address">MAC-адреса</string>
     <string name="setup_mac_example">00:1A:79:AA:BB:CC</string>
@@ -228,4 +228,63 @@
     <string name="companion_error_pair_failed">Не вдалося створити пару з цим пристроєм.</string>
     <string name="local_sync_browser_title">OwnTV: локальна синхронізація</string>
     <string name="local_sync_browser_body">Ця адреса призначена для застосунку OwnTV на вашому іншому пристрої. Відкрийте там «Локальну синхронізацію» й виберіть цей пристрій зі списку.</string>
+    <string name="companion_error_no_backup">Резервної копії немає.</string>
+    <string name="companion_error_backup_too_large">Резервна копія завелика.</string>
+    <string name="companion_error_empty_backup">Резервна копія порожня.</string>
+    <string name="companion_error_image_too_large">Зображення завелике.</string>
+    <string name="companion_error_invalid_image">Це не є допустимим зображенням.</string>
+    <string name="companion_error_missing_fields">Не заповнено обов\'язкові поля.</string>
+    <string name="setup_invalid_locale">Ця резервна копія містила непідтримувану мову застосунку. Відновлення пройшло успішно, але вашу поточну мову збережено.</string>
+    <string name="setup_prefer_hls_live_tv">Надавати перевагу HLS для ТБ наживо</string>
+    <string name="setup_prefer_hls_description">Надавати пріоритет HLS (.m3u8) над MPEG-TS для ТБ наживо. Якщо HLS не працює, буде використано MPEG-TS. Архів завжди використовує MPEG-TS.</string>
+    <string name="setup_prefer_hls_description_supported">Надавати пріоритет HLS (.m3u8) над MPEG-TS для ТБ наживо. Якщо HLS не працює, буде використано MPEG-TS. Архів завжди використовує MPEG-TS. Ваш провайдер повідомляє про підтримку HLS.</string>
+    <string name="setup_prefer_hls_description_unsupported">Надавати пріоритет HLS (.m3u8) над MPEG-TS для ТБ наживо. Якщо HLS не працює, буде використано MPEG-TS. Архів завжди використовує MPEG-TS. Ваш провайдер не повідомляє про підтримку HLS — але ви все одно можете спробувати.</string>
+    <string name="setup_hls_test_support">Перевірити підтримку HLS</string>
+    <string name="setup_hls_testing">Перевірка HLS…</string>
+    <string name="setup_hls_test_failed">Перевірка не вдалася: <xliff:g id="reason">%1$s</xliff:g></string>
+    <string name="setup_hls_test_provider_unreachable">Не вдалося зв’язатися з провайдером — перевірте URL сервера, ім’я користувача та пароль.</string>
+    <string name="setup_hls_test_works">✓ HLS працює — ваш провайдер повернув плейлист.</string>
+    <string name="setup_hls_test_works_unadvertised">✓ HLS працює — ваш провайдер повернув плейлист, хоча не заявляє про підтримку HLS.</string>
+    <string name="setup_hls_test_busy">Не вдалося завершити — на акаунті зараз немає вільних підключень (HTTP <xliff:g id="status">%1$d</xliff:g>). Зупиніть інші трансляції й перевірте знову.</string>
+    <string name="setup_hls_test_not_served">HLS не спрацював — <xliff:g id="reason">%1$s</xliff:g>. Залиште цю опцію вимкненою, і ТБ наживо використовуватиме MPEG-TS.</string>
+    <string name="setup_hls_test_reason_not_playlist">сервер відповів, але не плейлистом</string>
+    <string name="setup_hls_test_reason_no_endpoint">немає HLS-ендпоінта для цього каналу (HTTP <xliff:g id="status">%1$d</xliff:g>)</string>
+    <string name="setup_hls_test_inconclusive">Не вдалося перевірити (<xliff:g id="reason">%1$s</xliff:g>). <xliff:g id="provider_claim">%2$s</xliff:g></string>
+    <string name="setup_hls_test_reason_http">HTTP <xliff:g id="status">%1$d</xliff:g></string>
+    <string name="setup_hls_test_reason_no_answer">немає відповіді</string>
+    <string name="setup_hls_test_reason_no_live_channels">у цьому плейлисті немає каналів у прямому ефірі для перевірки</string>
+    <string name="setup_hls_test_reason_dead_channel">тестовий канал не відтворився й через MPEG-TS, тож він, можливо, просто не працює</string>
+    <string name="setup_hls_provider_advertises">Ваш провайдер заявляє про підтримку HLS.</string>
+    <string name="setup_hls_provider_does_not_advertise">Ваш провайдер не заявляє про підтримку HLS.</string>
+    <string name="setup_hide_new_categories">Приховувати нові категорії за замовчуванням</string>
+    <string name="setup_hide_new_categories_description">Для всього профілю: категорії, що з’являться під час наступних синхронізацій, будуть приховані. Переглянути їх можна будь-коли в розділі «Налаштувати».</string>
+    <string name="setup_step_display">Екран</string>
+    <string name="setup_step_playlist">Плейлист</string>
+    <string name="setup_step_ready">Готово</string>
+    <string name="setup_key_previous_step">Попередній крок</string>
+    <string name="setup_welcome_title">Ласкаво просимо до OwnTV</string>
+    <string name="setup_welcome_sub">Ваш власний IPTV-плеєр. Виберіть мову, щоб почати — пізніше її можна змінити в «Налаштуваннях».</string>
+    <plurals name="setup_languages_all">
+        <item quantity="one"><xliff:g id="count">%1$d</xliff:g> мова</item>
+        <item quantity="few">Усі <xliff:g id="count">%1$d</xliff:g> мови</item>
+        <item quantity="many">Усі <xliff:g id="count">%1$d</xliff:g> мов</item>
+        <item quantity="other">Усі <xliff:g id="count">%1$d</xliff:g> мов</item>
+    </plurals>
+    <string name="setup_display_sub">Наскільки великими є інтерфейс і його текст на цьому телевізорі. Рядок нижче змінюється в міру вибору.</string>
+    <string name="setup_display_sub_mobile">Наскільки великими є інтерфейс і його текст на цьому телефоні. Рядок нижче змінюється в міру вибору.</string>
+    <string name="setup_line_zoom">Усе на екрані</string>
+    <string name="setup_line_font">Лише текст</string>
+    <string name="setup_line_app_icon">Як OwnTV виглядає на головному екрані телевізора</string>
+    <string name="setup_line_app_icon_mobile">Як OwnTV виглядає на вашому головному екрані</string>
+    <string name="setup_restore_card_line">З файлу або через «Інший пристрій» з іншого пристрою</string>
+    <string name="setup_device_appear">Тут з’являються пристрої з увімкненою локальною синхронізацією</string>
+    <string name="setup_device_address_hint">або введіть адресу іншого пристрою</string>
+    <string name="setup_profile_sub">Профіль має власне обране, історію та «Головну». Додати інші можна пізніше в «Налаштування › Профіль».</string>
+    <string name="setup_avatar">Аватар</string>
+    <string name="setup_avatar_line">Виберіть зображення або залиште літеру</string>
+    <string name="setup_create_profile">Створити профіль</string>
+    <string name="setup_phone_card_line">Заповніть форму в браузері на іншому пристрої — це найшвидше</string>
+    <string name="setup_importing_title">Імпорт: <xliff:g id="name">%1$s</xliff:g></string>
+    <string name="setup_add_guide">Додати програму передач</string>
+    <string name="setup_add_guide_line">У новій установці програми передач ще немає</string>
 </resources>

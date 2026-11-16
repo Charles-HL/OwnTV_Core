@@ -1,3 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="player_trailer_exit">Вийти</string>
+    <string name="player_trailer_progress"><xliff:g id="current">%1$s</xliff:g> / <xliff:g id="duration">%2$s</xliff:g></string>
+    <string name="player_zoom_fit_screen">За розміром екрана</string>
+    <string name="player_zoom_fill_crop">Заповнити / Обрізати</string>
+    <string name="player_zoom_stretch">Розтягнути</string>
+    <string name="player_zoom_original">Оригінал (1:1)</string>
+    <string name="player_zoom_force_16_9">Примусово 16:9</string>
+    <string name="player_zoom_force_4_3">Примусово 4:3</string>
+    <string name="player_mini_top_left">Угорі ліворуч</string>
+    <string name="player_mini_top_center">Угорі по центру</string>
+    <string name="player_mini_top_right">Угорі праворуч</string>
+    <string name="player_mini_bottom_left">Унизу ліворуч</string>
+    <string name="player_mini_bottom_center">Унизу по центру</string>
+    <string name="player_mini_bottom_right">Унизу праворуч</string>
+    <string name="player_channel_label">КАНАЛ</string>
+    <string name="player_at_live_edge">● У прямому ефірі</string>
+    <string name="player_behind_live">● Відставання від ефіру: <xliff:g id="offset">%1$s</xliff:g></string>
+    <string name="player_live_offset">−<xliff:g id="offset">%1$s</xliff:g></string>
+    <string name="player_go_live">У ефір</string>
+    <string name="player_timeshift_resume_title">Продовжити з того місця, де зупинилися?</string>
+    <string name="player_timeshift_resume_message">Цей канал було збережено, поки вас не було.</string>
+    <string name="player_previous_channel">Попередній канал</string>
+    <string name="player_tool_sources">Джерела</string>
+    <string name="player_sources_none">Інших версій цього каналу не знайдено.</string>
+    <string name="player_next_channel_in_list">Наступний канал</string>
+    <string name="player_previous_channel_in_list">Попередній канал у списку</string>
+    <string name="player_live_scrub_at"><xliff:g id="time">%1$s</xliff:g> · <xliff:g id="programme">%2$s</xliff:g></string>
+    <string name="player_tool_volume">Гучність</string>
+    <string name="player_tool_brightness">Яскравість</string>
+    <string name="player_skip_back">Перемотка назад</string>
+    <string name="player_skip_forward">Перемотка вперед</string>
+    <string name="player_tool_audio">Звук</string>
+    <string name="player_tool_subtitles">Субтитри</string>
+    <string name="player_tool_favorite">Обране</string>
+    <string name="player_tool_catchup">Архів</string>
 </resources>
