@@ -35,4 +35,42 @@
     <string name="player_tool_subtitles">Субтитри</string>
     <string name="player_tool_favorite">Обране</string>
     <string name="player_tool_catchup">Архів</string>
+    <string name="player_tool_speed">Швидкість</string>
+    <string name="player_tool_aspect">Формат</string>
+    <string name="player_tool_quality">Якість</string>
+    <string name="player_tool_mini">Міні</string>
+    <string name="player_tool_audio_only">Лише звук</string>
+    <string name="player_tool_engine">Плеєр</string>
+    <string name="player_tool_info">Інформація</string>
+    <string name="player_tool_report">Звіт</string>
+    <string name="player_channel_not_found">Канал не знайдено</string>
+    <string name="player_channel_number_entry">Номер каналу</string>
+    <string name="player_multiple_channels">Кілька каналів</string>
+    <string name="player_tune_failed">Не вдалося перемкнути канал</string>
+    <string name="player_playback_error">Помилка відтворення</string>
+    <string name="player_raw_error">помилка: <xliff:g id="error">%1$s</xliff:g></string>
+    <string name="player_provider_retry_after">HTTP <xliff:g id="code">%1$d</xliff:g>: <xliff:g id="reason">%2$s</xliff:g> Повторна спроба через <xliff:g id="seconds">%3$d</xliff:g>с.</string>
+    <string name="player_provider_busy">Провайдер зайнятий.</string>
+    <string name="player_reconnecting">Потік перервано. Повторне підключення…</string>
+    <string name="player_audio_track">Звукова доріжка</string>
+    <string name="player_subtitles">Субтитри</string>
+    <string name="player_subtitle_timing">Синхронізація субтитрів</string>
+    <string name="player_add_subtitles">ДОДАТИ СУБТИТРИ</string>
+    <string name="player_adjust">КОРИГУВАННЯ</string>
+    <string name="player_search_subtitles">Шукати в OpenSubtitles</string>
+    <string name="player_select_local_subtitle">Вибрати локальний файл субтитрів</string>
+    <string name="player_no_tracks">Доріжок немає.</string>
+    <string name="player_image_track"><xliff:g id="label">%1$s</xliff:g> · зображення</string>
+    <string name="player_av_sync">Синхронізація аудіо/відео</string>
+    <string name="player_av_sync_remember">Запам’ятати цю затримку</string>
+    <string name="player_no_offset">Без затримки</string>
+    <string name="player_subtitles_later">Показ субтитрів із затримкою</string>
+    <string name="player_subtitles_earlier">Субтитри з’являються раніше</string>
+    <string name="player_delay_zero">0 мс</string>
+    <string name="player_delay_positive">+<xliff:g id="ms">%1$d</xliff:g> мс</string>
+    <string name="player_delay_negative"><xliff:g id="ms">%1$d</xliff:g> мс</string>
+    <string name="player_speed_normal">1.0x (Нормальна)</string>
+    <string name="player_speed_normal_short">1.0x</string>
+    <string name="player_speed"><xliff:g id="speed">%1$s</xliff:g>x</string>
+    <string name="player_next_episode">Наступний епізод через <xliff:g id="seconds">%1$d</xliff:g> с</string>
 </resources>
