@@ -2,4 +2,5 @@
 <resources>
     <string name="settings_backup_continue">Далі</string>
     <string name="settings_sources_refresh_off">Вимкнено</string>
+    <string name="local_sync_title">Локальна синхронізація</string>
 </resources>

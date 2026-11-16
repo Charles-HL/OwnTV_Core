@@ -221,4 +221,11 @@
     <string name="companion_download_heading">Завантажте свою резервну копію</string>
     <string name="companion_download_description">Ваш телевізор підготував файл резервної копії OwnTV. Натисніть кнопку, щоб зберегти його на цьому пристрої (owntv-backup.own). Зберігайте його в надійному місці: пізніше з нього можна буде відновитися.</string>
     <string name="companion_download_backup">Завантажити резервну копію</string>
+    <string name="companion_error_bad_request">Некоректний запит</string>
+    <string name="companion_error_body_too_large">Тіло запиту завелике.</string>
+    <string name="companion_error_unauthorized">Немає доступу. Перевірте PIN-код і спробуйте ще раз.</string>
+    <string name="companion_error_not_found">Не знайдено.</string>
+    <string name="companion_error_pair_failed">Не вдалося створити пару з цим пристроєм.</string>
+    <string name="local_sync_browser_title">OwnTV: локальна синхронізація</string>
+    <string name="local_sync_browser_body">Ця адреса призначена для застосунку OwnTV на вашому іншому пристрої. Відкрийте там «Локальну синхронізацію» й виберіть цей пристрій зі списку.</string>
 </resources>
