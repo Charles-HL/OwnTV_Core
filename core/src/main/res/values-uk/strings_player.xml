@@ -72,5 +72,45 @@
     <string name="player_speed_normal">1.0x (Нормальна)</string>
     <string name="player_speed_normal_short">1.0x</string>
     <string name="player_speed"><xliff:g id="speed">%1$s</xliff:g>x</string>
-    <string name="player_next_episode">Наступний епізод через <xliff:g id="seconds">%1$d</xliff:g> с</string>
+    <string name="player_next_episode">Наступний епізод через <xliff:g id="seconds">%1$d</xliff:g>с</string>
+    <string name="player_play_now">Відтворити зараз</string>
+    <string name="player_volume">Гучність</string>
+    <string name="player_unmute">Увімкнути звук</string>
+    <string name="player_mute">Вимкнути звук</string>
+    <string name="player_percent"><xliff:g id="value">%1$d</xliff:g>%%</string>
+    <string name="player_duration_minutes"><xliff:g id="minutes">%1$d</xliff:g> хв</string>
+    <string name="player_season_number">Сезон <xliff:g id="season">%1$d</xliff:g></string>
+    <string name="player_episode_number">Епізод <xliff:g id="episode">%1$d</xliff:g></string>
+    <string name="player_episode_context_title"><xliff:g id="title">%1$s</xliff:g> · S<xliff:g id="season">%2$d</xliff:g>E<xliff:g id="episode">%3$d</xliff:g></string>
+    <string name="player_channel_number">#<xliff:g id="number">%1$s</xliff:g></string>
+    <string name="player_live">НАЖИВО</string>
+    <string name="player_subtitle_delay_zero">0.0 с</string>
+    <string name="player_subtitle_delay_positive">+<xliff:g id="seconds">%1$.1f</xliff:g> с</string>
+    <string name="player_subtitle_delay_negative">−<xliff:g id="seconds">%1$.1f</xliff:g> с</string>
+    <string name="player_time_progress"><xliff:g id="position">%1$s</xliff:g> / <xliff:g id="duration">%2$s</xliff:g></string>
+    <string name="player_time_remaining">−<xliff:g id="time">%1$s</xliff:g></string>
+    <string name="player_switch_exo">Перемкнено на ExoPlayer</string>
+    <string name="player_switch_mpv">Перемкнено на MPV</string>
+    <string name="player_smoothness_hint">Цей канал пропускає кадри. Перемикання плеєра на MPV може покращити плавність відтворення.</string>
+    <string name="player_error_image_subtitle_audio">Графічні субтитри недоступні для аудіоформату цього відео.</string>
+    <string name="player_error_both_engines_exo_first">Не вдалося відтворити в обох плеєрах (спочатку ExoPlayer, потім mpv). Файл може бути пошкоджений або мати формат, який цей телевізор не підтримує.</string>
+    <string name="player_error_both_engines_mpv_first">Не вдалося відтворити в обох плеєрах (mpv і ExoPlayer). Файл може бути пошкоджений або мати формат, який цей телевізор не підтримує. (<xliff:g id="error">%1$s</xliff:g>)</string>
+    <string name="player_error_stream_link">Не вдалося отримати посилання на потік від порталу. Перевірте з’єднання й спробуйте ще раз.</string>
+    <string name="player_error_not_streaming">Це відео не підготовлене для потокового відтворення. Попросіть провайдера перекодувати його з fast-start або спершу завантажте його.</string>
+    <string name="player_error_lost_connection">З’єднання з цим каналом втрачено.</string>
+    <string name="player_error_channel">Не вдалося відтворити цей канал.</string>
+    <string name="player_error_exo_decode">ExoPlayer не може декодувати формат цього відео на цьому пристрої (<xliff:g id="error">%1$s</xliff:g>).</string>
+    <string name="player_error_exo_play">ExoPlayer не зміг відтворити цей потік (<xliff:g id="error">%1$s</xliff:g>).</string>
+    <string name="player_error_image_format">Графічні субтитри недоступні для формату цього файлу.</string>
+    <string name="player_error_image_show">Не вдалося показати графічні субтитри для цього файлу.</string>
+    <string name="player_external_could_not_open">Не вдалося відкрити цей потік.</string>
+    <string name="player_external_not_found">Зовнішній плеєр не знайдено — встановіть VLC або MX Player.</string>
+    <string name="player_error_audio_no_video">Звук відтворюється, але відео не вдалося показати на цьому пристрої.</string>
+    <string name="player_error_file_corrupt">Файл цього відео пошкоджений або має неправильну структуру й не може бути відтворений.</string>
+    <string name="player_error_multiple_videos">Не вдалося відтворити кілька відео. Джерело може бути недоступним, або файли пошкоджені.</string>
+    <string name="player_error_decoder_busy">Відеодекодер цього телевізора зайнятий. Спробуйте ще раз трохи пізніше.</string>
+    <string name="player_error_no_internet">Немає підключення до інтернету. Перевірте мережу й спробуйте ще раз.</string>
+    <string name="player_error_stream_unavailable">Не вдалося відтворити цей потік. Джерело може бути вимкнене або мати непідтримуваний формат. <xliff:g id="hint">%1$s</xliff:g></string>
+    <string name="player_error_account_in_use">Цей обліковий запис уже використовується на іншому пристрої або в іншому застосунку. Зупиніть відтворення там і натисніть «Повторити».</string>
+    <string name="player_error_mpv_open_decode">mpv не зміг відкрити або декодувати цей файл.</string>
 </resources>
