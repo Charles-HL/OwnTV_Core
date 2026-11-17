@@ -150,4 +150,110 @@
     <string name="player_stream_deinterlaced_by_player">Черезрядкова · плеєр прибирає черезрядковість</string>
     <string name="player_stream_deinterlaced_by_device">Черезрядкова · пристрій прибирає черезрядковість</string>
     <string name="player_stream_not_deinterlaced">Черезрядкова · черезрядковість не прибирається</string>
+    <string name="player_stream_bitrate">Бітрейт</string>
+    <string name="player_stream_decoder">Декодер</string>
+    <string name="player_stream_audio">Аудіо</string>
+    <string name="player_stream_buffer">Буфер</string>
+    <string name="player_stream_engine_exo_preferred">ExoPlayer (основний)</string>
+    <string name="player_stream_engine_exo_fallback">ExoPlayer (резервний після збою mpv)</string>
+    <string name="player_stream_engine_exo_image_subtitle">ExoPlayer (передача для графічних субтитрів)</string>
+    <string name="player_stream_fps"><xliff:g id="fps">%1$.2f</xliff:g> к/с</string>
+    <string name="player_stream_bit_depth"><xliff:g id="bits">%1$d</xliff:g>-бітний</string>
+    <string name="player_stream_mbps"><xliff:g id="value">%1$s</xliff:g> Мбіт/с</string>
+    <string name="player_stream_khz"><xliff:g id="value">%1$s</xliff:g> кГц</string>
+    <string name="player_stream_kbps"><xliff:g id="value">%1$s</xliff:g> кбіт/с</string>
+    <string name="player_stream_seconds"><xliff:g id="value">%1$s</xliff:g> с у буфері</string>
+    <string name="player_audio_only_title">Лише звук</string>
+    <string name="player_audio_only_body">Тут є звук, але немає зображення. Усе гаразд — відтворення працює нормально.</string>
+    <string name="player_audio_mono">моно</string>
+    <string name="player_audio_stereo">стерео</string>
+    <plurals name="player_audio_channels">
+        <item quantity="one"><xliff:g id="count">%1$d</xliff:g> канал</item>
+        <item quantity="few"><xliff:g id="count">%1$d</xliff:g> канали</item>
+        <item quantity="many"><xliff:g id="count">%1$d</xliff:g> каналів</item>
+        <item quantity="other"><xliff:g id="count">%1$d</xliff:g> каналів</item>
+    </plurals>
+    <plurals name="player_stream_dropped_frames">
+        <item quantity="one"><xliff:g id="count">%1$d</xliff:g> кадр пропущено</item>
+        <item quantity="few"><xliff:g id="count">%1$d</xliff:g> кадри пропущено</item>
+        <item quantity="many"><xliff:g id="count">%1$d</xliff:g> кадрів пропущено</item>
+        <item quantity="other"><xliff:g id="count">%1$d</xliff:g> кадрів пропущено</item>
+    </plurals>
+    <string name="player_decoder_hardware">апаратний декодер</string>
+    <string name="player_decoder_software">програмний декодер</string>
+    <string name="player_decoder_direct">прямий</string>
+    <string name="player_decoder_gpu">GPU</string>
+    <string name="player_subtitles_search_title">Пошук в OpenSubtitles</string>
+    <string name="player_subtitles_working">Виконується…</string>
+    <string name="player_subtitles_edit_search">Змінити пошук</string>
+    <string name="player_subtitles_title_label">Назва</string>
+    <string name="player_subtitles_delete_title">Видалити субтитри OpenSub</string>
+    <string name="player_subtitles_sign_in">Увійти</string>
+    <string name="player_subtitles_sign_out">Вийти з OpenSubtitles</string>
+    <string name="player_subtitles_account">Обліковий запис</string>
+    <string name="player_subtitles_username">Ім’я користувача</string>
+    <string name="player_subtitles_password">Пароль</string>
+    <string name="player_subtitles_stay_signed_in">Залишатися в системі</string>
+    <string name="player_subtitles_sign_in_title">Вхід до OpenSubtitles</string>
+    <string name="player_subtitles_connect_description">Підключіть обліковий запис OpenSubtitles для цього профілю.</string>
+    <string name="player_subtitles_contacting">З’єднання з OpenSubtitles…</string>
+    <string name="player_subtitles_api_notice">Цей продукт використовує API OpenSubtitles, але не схвалений і не сертифікований OpenSubtitles.</string>
+    <string name="player_subtitles_delete_description">Видалити субтитри, завантажені вами для фільмів і серіалів.</string>
+    <string name="player_subtitles_delete_login_message">Видаляє дані входу OpenSubtitles для цього профілю з цього пристрою. Уже завантажені субтитри залишаються доступними офлайн.</string>
+    <string name="player_subtitles_delete_action">Видалити субтитри</string>
+    <string name="player_subtitles_downloads">Завантаження</string>
+    <string name="player_subtitles_vip">VIP</string>
+    <string name="player_subtitles_refresh">Оновити</string>
+    <string name="player_subtitles_sign_in_to_use">Використовуйте обліковий запис opensubtitles.com. Створити його безкоштовно.</string>
+    <plurals name="player_subtitles_remaining">
+        <item quantity="one">Залишилося <xliff:g id="remaining">%1$d</xliff:g> завантаження з <xliff:g id="total">%2$d</xliff:g> на сьогодні</item>
+        <item quantity="few">Залишилося <xliff:g id="remaining">%1$d</xliff:g> завантаження з <xliff:g id="total">%2$d</xliff:g> на сьогодні</item>
+        <item quantity="many">Залишилося <xliff:g id="remaining">%1$d</xliff:g> завантажень з <xliff:g id="total">%2$d</xliff:g> на сьогодні</item>
+        <item quantity="other">Залишилося <xliff:g id="remaining">%1$d</xliff:g> завантажень з <xliff:g id="total">%2$d</xliff:g> на сьогодні</item>
+    </plurals>
+    <plurals name="player_subtitles_remaining_short">
+        <item quantity="one">Залишилося <xliff:g id="remaining">%1$d</xliff:g> завантаження на сьогодні</item>
+        <item quantity="few">Залишилося <xliff:g id="remaining">%1$d</xliff:g> завантаження на сьогодні</item>
+        <item quantity="many">Залишилося <xliff:g id="remaining">%1$d</xliff:g> завантажень на сьогодні</item>
+        <item quantity="other">Залишилося <xliff:g id="remaining">%1$d</xliff:g> завантажень на сьогодні</item>
+    </plurals>
+    <plurals name="player_subtitles_remaining_reset">
+        <item quantity="one">Залишилося <xliff:g id="remaining">%1$d</xliff:g> завантаження на сьогодні · оновиться через <xliff:g id="reset">%2$s</xliff:g></item>
+        <item quantity="few">Залишилося <xliff:g id="remaining">%1$d</xliff:g> завантаження на сьогодні · оновиться через <xliff:g id="reset">%2$s</xliff:g></item>
+        <item quantity="many">Залишилося <xliff:g id="remaining">%1$d</xliff:g> завантажень на сьогодні · оновиться через <xliff:g id="reset">%2$s</xliff:g></item>
+        <item quantity="other">Залишилося <xliff:g id="remaining">%1$d</xliff:g> завантажень на сьогодні · оновиться через <xliff:g id="reset">%2$s</xliff:g></item>
+    </plurals>
+    <plurals name="player_subtitles_remaining_count">
+        <item quantity="one">Залишилося <xliff:g id="remaining">%1$d</xliff:g> завантаження на сьогодні</item>
+        <item quantity="few">Залишилося <xliff:g id="remaining">%1$d</xliff:g> завантаження на сьогодні</item>
+        <item quantity="many">Залишилося <xliff:g id="remaining">%1$d</xliff:g> завантажень на сьогодні</item>
+        <item quantity="other">Залишилося <xliff:g id="remaining">%1$d</xliff:g> завантажень на сьогодні</item>
+    </plurals>
+    <string name="player_subtitles_session">Сесія підключення спливає. Вимкніть, щоб зберігати лише тимчасову сесію.</string>
+    <string name="player_subtitles_free_description_full">OpenSubtitles — безкоштовний відкритий спільнотний сервіс субтитрів. Увійдіть за допомогою власного облікового запису opensubtitles.com; створити його безкоштовно. Це стосується лише поточного профілю.</string>
+    <string name="player_subtitles_session_expired">Вашу сесію OpenSubtitles завершено. Щоб і далі шукати й завантажувати субтитри, увійдіть знову в «Налаштування → Відеоплеєр → Субтитри → OpenSubtitles».</string>
+    <string name="player_subtitles_account_needed">Потрібен обліковий запис OpenSubtitles\n\nЩоб шукати й завантажувати субтитри, увійдіть у «Налаштування → Відеоплеєр → Субтитри → OpenSubtitles». OpenSubtitles — безкоштовний відкритий спільнотний сервіс: будь-хто може створити безкоштовний обліковий запис на opensubtitles.com.</string>
+    <string name="player_subtitles_show_all_languages">Показати всі мови</string>
+    <string name="player_subtitles_all_languages">Усі мови</string>
+    <string name="player_subtitles_try_again">Повторити спробу</string>
+    <string name="player_subtitles_limit_reached">Досягнуто добового ліміту пошуку субтитрів. Спробуйте завтра.</string>
+    <string name="player_subtitles_network_error">Не вдалося зв’язатися з OpenSubtitles. Перевірте з’єднання й спробуйте ще раз.</string>
+    <string name="player_subtitles_subtitle">Субтитр</string>
+    <string name="player_subtitles_trusted">Перевірений</string>
+    <string name="player_subtitles_sdh">SDH</string>
+    <string name="player_subtitles_ai">ШІ</string>
+    <plurals name="player_subtitles_download_count">
+        <item quantity="one"><xliff:g id="count">%1$d</xliff:g> завантаження</item>
+        <item quantity="few"><xliff:g id="count">%1$d</xliff:g> завантаження</item>
+        <item quantity="many"><xliff:g id="count">%1$d</xliff:g> завантажень</item>
+        <item quantity="other"><xliff:g id="count">%1$d</xliff:g> завантажень</item>
+    </plurals>
+    <string name="player_subtitles_tags_separator">" · "</string>
+    <string name="player_subtitles_search">Шукати</string>
+    <string name="player_subtitles_connected_as">Підключено як</string>
+    <string name="player_subtitles_connected_user">Підключено як <xliff:g id="username">%1$s</xliff:g></string>
+    <string name="player_subtitles_resets">Оновиться</string>
+    <string name="player_subtitles_free_account">Безкоштовний</string>
+    <string name="player_subtitles_enter_credentials">Введіть ім’я користувача й пароль OpenSubtitles.</string>
+    <string name="player_subtitles_invalid_credentials">OpenSubtitles не вдалося увійти з цими даними облікового запису.</string>
 </resources>

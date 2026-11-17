@@ -178,7 +178,7 @@
         <item quantity="other">Видалено <xliff:g id="count">%1$d</xliff:g> категорій</item>
     </plurals>
     <string name="sync_error_portal">Не вдалося зв’язатися з порталом. Перевірте URL порталу — зазвичай він закінчується на /c/.</string>
-    <string name="sync_error_session">Сеанс порталу завершився. Спробуйте ще раз.</string>
+    <string name="sync_error_session">Сесія порталу завершилася. Спробуйте ще раз.</string>
     <string name="sync_error_auth">Сервер відхилив ваші дані для входу. Перевірте ім’я користувача та пароль.</string>
     <string name="sync_error_not_found">Не знайдено на сервері. Перевірте URL.</string>
     <string name="sync_error_server">Помилка сервера. Будь ласка, спробуйте ще раз пізніше.</string>
