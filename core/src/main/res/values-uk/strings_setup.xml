@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="setup_background_image">Фонове зображення</string>
-    <string name="setup_background_image_description">Виберіть фото для тла інтерфейсу або очистьте, щоб повернути звичайний фон панелей.</string>
+    <string name="setup_background_image_description">Виберіть фото для тла інтерфейсу або очистіть, щоб повернути звичайний фон панелей.</string>
     <string name="setup_from_device">Цей пристрій</string>
     <string name="setup_from_phone">Інший пристрій</string>
     <string name="setup_send_from_phone">Надіслати з іншого пристрою</string>

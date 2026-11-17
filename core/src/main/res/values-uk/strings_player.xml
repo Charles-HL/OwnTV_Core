@@ -18,7 +18,7 @@
     <string name="player_at_live_edge">● У прямому ефірі</string>
     <string name="player_behind_live">● Відставання від ефіру: <xliff:g id="offset">%1$s</xliff:g></string>
     <string name="player_live_offset">−<xliff:g id="offset">%1$s</xliff:g></string>
-    <string name="player_go_live">У ефір</string>
+    <string name="player_go_live">В ефір</string>
     <string name="player_timeshift_resume_title">Продовжити з того місця, де зупинилися?</string>
     <string name="player_timeshift_resume_message">Цей канал було збережено, поки вас не було.</string>
     <string name="player_previous_channel">Попередній канал</string>
@@ -113,4 +113,41 @@
     <string name="player_error_stream_unavailable">Не вдалося відтворити цей потік. Джерело може бути вимкнене або мати непідтримуваний формат. <xliff:g id="hint">%1$s</xliff:g></string>
     <string name="player_error_account_in_use">Цей обліковий запис уже використовується на іншому пристрої або в іншому застосунку. Зупиніть відтворення там і натисніть «Повторити».</string>
     <string name="player_error_mpv_open_decode">mpv не зміг відкрити або декодувати цей файл.</string>
+    <string name="player_error_mpv_stream_never_started">Потік так і не запустився в mpv після кількох спроб.</string>
+    <string name="player_error_fairplay">Цей потік захищений Apple FairPlay, який пристрої Android не можуть відтворити. Плейлист створений для пристроїв Apple.</string>
+    <string name="player_error_surround">Цей аудіовихід не підтримує об\'ємний звук, тому увімкнено стерео.</string>
+    <string name="player_error_hardware_fallback">Формат цього потоку не вдалося декодувати апаратно на цьому телевізорі, тому застосовано програмне декодування, а воно не витягує <xliff:g id="resolution">%1$s</xliff:g> без перевантаження телевізора. Інший контент 4K телевізор може відтворювати нормально, проблема саме у форматі цього потоку.</string>
+    <string name="player_error_hardware_disabled">Апаратне декодування вимкнено, а програмне не справляється з відео <xliff:g id="resolution">%1$s</xliff:g>. Увімкніть його в Налаштування › Відеоплеєр.</string>
+    <string name="player_error_custom_user_agent">Цей провайдер може вимагати власний User-Agent у налаштуваннях джерела.</string>
+    <string name="player_reason_decoder_busy">Апаратний відеодекодер зайнятий або не може обробити цей потік</string>
+    <string name="player_reason_decoder_transient">Помилка апаратного відеодекодера — тимчасова, спробуйте ще раз</string>
+    <string name="player_reason_unsupported_video">Декодер цього пристрою не підтримує цей формат або профіль відео (наприклад, HEVC 10-bit)</string>
+    <string name="player_reason_decoder_memory">Пристрою не вистачило пам\'яті для декодера — спробуйте закрити інші застосунки</string>
+    <string name="player_reason_drm">Помилка DRM або захищеного декодера</string>
+    <string name="player_reason_http_509">Провайдер заблокував з\'єднання — забагато потоків одночасно (HTTP 509)</string>
+    <string name="player_reason_http_403">Провайдер відмовив у доступі (HTTP 403) — можливі причини: облікові дані, підписка або блокування IP</string>
+    <string name="player_reason_http_401">Провайдер відхилив ваш вхід (HTTP 401)</string>
+    <string name="player_reason_http_404">Потік не знайдено у провайдера (HTTP 404)</string>
+    <string name="player_reason_http_400">Провайдер відхилив запит (HTTP 400) — недійсне або прострочене посилання</string>
+    <string name="player_reason_ssl">SSL-сертифікат провайдера недійсний або термін його дії минув</string>
+    <string name="player_reason_format">Формат потоку не розпізнано (пошкоджений або неповний потік)</string>
+    <string name="player_reason_network">Проблема з мережею під час звернення до провайдера</string>
+    <string name="player_reason_audio">Помилка аудіовиходу — пристрій не зміг відтворити цей аудіоформат</string>
+    <string name="player_audio_track_number">Звук <xliff:g id="number">%1$d</xliff:g></string>
+    <string name="player_subtitle_track_number">Субтитри <xliff:g id="number">%1$d</xliff:g></string>
+    <string name="player_metadata_separator">" · "</string>
+    <string name="player_stream_info">Інформація про потік</string>
+    <string name="player_stream_engine">Рушій</string>
+    <string name="player_stream_format">Формат потоку</string>
+    <string name="player_stream_source">Джерело</string>
+    <string name="player_stream_video">Відео</string>
+    <string name="player_stream_hdr">HDR</string>
+    <string name="player_stream_hdr10_pq">HDR10 (PQ)</string>
+    <string name="player_stream_hlg">HLG</string>
+    <string name="player_stream_sdr">SDR</string>
+    <string name="player_stream_interlacing">Черезрядкова розгортка</string>
+    <string name="player_stream_progressive">Немає (прогресивна)</string>
+    <string name="player_stream_deinterlaced_by_player">Черезрядкова · плеєр прибирає черезрядковість</string>
+    <string name="player_stream_deinterlaced_by_device">Черезрядкова · пристрій прибирає черезрядковість</string>
+    <string name="player_stream_not_deinterlaced">Черезрядкова · черезрядковість не прибирається</string>
 </resources>
