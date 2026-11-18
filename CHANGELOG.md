@@ -13,6 +13,13 @@
 
 **Database v54**
 
+### ✨ New features
+
+- **📅 TV Guide remembers its own category, per profile** (community PR #86 by @Quad-Plex)
+- **🗂️ Favorites and History show their sort as "Newest first" in both apps** (rebuilt from community PR #85 by @Quad-Plex)
+- **🔒 Phone player: screen lock strings in every language**
+- **🌍 Central Kurdish added to the translation catalogue (#82)**
+
 ### 🐛 Fixes
 
 - **⏪ Timeshift: leaving a channel while it is still opening no longer leaves its download running**
