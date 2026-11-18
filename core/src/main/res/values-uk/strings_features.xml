@@ -432,7 +432,7 @@
         <item quantity="other">Показати <xliff:g id="count">%1$d</xliff:g> каналів</item>
     </plurals>
     <string name="sports_filter_only_this">Лише цей</string>
-    <string name="sports_filter_toggle">Перемкнути</string>
+    <string name="sports_filter_toggle">Увімкнути/вимкнути</string>
     <string name="sports_goal_toast">Гол команді, за якою ви стежите</string>
     <string name="sports_switch">Перейти</string>
     <string name="sports_other_channels">Інші канали</string>
