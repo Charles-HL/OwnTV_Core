@@ -87,6 +87,7 @@ class TimeshiftDownloader(
 
     private suspend fun loop(): Result {
         var failures = 0
+        var sessionWaits = 0
         while (true) {
             currentCoroutineContext().ensureActive()
             val attemptStart = clock()
@@ -108,6 +109,12 @@ class TimeshiftDownloader(
             // A parked buffer's call is cancelled under it: that is the end asked for, not a failure.
             currentCoroutineContext().ensureActive()
             if (!started) {
+                if (TimeshiftRules.isSessionLimit(why) && sessionWaits < TimeshiftRules.SESSION_LIMIT_RETRIES) {
+                    val wait = TimeshiftRules.reconnectDelayMs(++sessionWaits)
+                    log("timeshift: session still in use ($why) — trying again in ${wait}ms")
+                    delay(wait)
+                    continue
+                }
                 log("timeshift: first connection failed — $why")
                 return Result.Refused(why)
             }

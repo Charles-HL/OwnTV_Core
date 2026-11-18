@@ -309,6 +309,7 @@ class LiveStreamQuirksTest {
         // 458 means "the stream is fine, you are the second client" — the opposite conclusion to a 403,
         // which is why it must not be lumped in with the edge refusals that trigger the mpv handoff.
         assertTrue(LiveStreamQuirks.isSessionLimit(458))
+        assertTrue(LiveStreamQuirks.isSessionLimit(460))
         assertFalse(LiveStreamQuirks.isSessionLimit(403))
         assertFalse(LiveStreamQuirks.isSessionLimit(459))
         assertFalse(LiveStreamQuirks.isSessionLimit(200))

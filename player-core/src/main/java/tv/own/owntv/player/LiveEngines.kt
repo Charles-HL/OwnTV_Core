@@ -18,6 +18,22 @@ data class LiveRequest(
     val directSource: String?,
 )
 
+/**
+ * Why a live engine let a channel go. [text] is for the log only; the ladder reads [httpStatus], so a
+ * reworded sentence cannot change what it learns.
+ */
+data class HandOver(val text: String, val httpStatus: Int? = null) {
+    /** The panel refused the *request* (busy, forbidden, rate-limited): nothing about the format. */
+    val refused: Boolean get() = httpStatus?.let { LiveStreamQuirks.isRequestRefusal(it) } == true
+
+    companion object {
+        /** A failure the engine reported; [detail] is the engine's own error text, which may name the
+         *  provider's HTTP status. Only [detail] is read for it, never the sentence around it. */
+        fun engineError(text: String, detail: String?): HandOver =
+            HandOver("$text: $detail", detail?.let { PlayerErrors.httpStatusIn(it) })
+    }
+}
+
 /** What mpv did with a channel it was just given: playback started, or an error. */
 data class MpvOutcome(val opened: Boolean, val error: String?)
 
@@ -61,7 +77,7 @@ interface LiveEngines {
     suspend fun watchExo(
         channelName: String,
         stillOurs: () -> Boolean,
-        handOver: suspend (String) -> Unit,
+        handOver: suspend (HandOver) -> Unit,
         onOpened: () -> Unit,
         postponeDeadline: (Long) -> Unit,
         log: (String) -> Unit,
@@ -80,6 +96,12 @@ interface LiveEngines {
      * says anything about whether the stream ever arrived.
      */
     suspend fun awaitMpvOutcome(timeoutMs: Long): MpvOutcome?
+
+    /**
+     * After mpv has opened: wait until it fails for good, and say why. "No internet" does not count — mpv
+     * reconnects by itself when the network returns, and the other engine could not play without one either.
+     */
+    suspend fun awaitMpvFailure(): String
 
     /** The Stalker re-resolve hook, installed on both engines, or cleared with null. */
     fun setReconnectProvider(provider: ReconnectUrlProvider?)
@@ -121,7 +143,7 @@ class EnginePair(private val exo: LivePreviewEngine, private val mpv: OwnTVPlaye
     override suspend fun watchExo(
         channelName: String,
         stillOurs: () -> Boolean,
-        handOver: suspend (String) -> Unit,
+        handOver: suspend (HandOver) -> Unit,
         onOpened: () -> Unit,
         postponeDeadline: (Long) -> Unit,
         log: (String) -> Unit,
@@ -152,6 +174,9 @@ class EnginePair(private val exo: LivePreviewEngine, private val mpv: OwnTVPlaye
     override suspend fun awaitMpvOutcome(timeoutMs: Long): MpvOutcome? = withTimeoutOrNull(timeoutMs) {
         combine(mpv.playbackStarted, mpv.error, ::mpvOutcomeOf).first { it != null }
     }
+
+    override suspend fun awaitMpvFailure(): String =
+        mpv.error.first { it != null && it != PlaybackFailure.NoInternet }.toString()
 
     override fun setReconnectProvider(provider: ReconnectUrlProvider?) {
         exo.reconnectUrlProvider = provider

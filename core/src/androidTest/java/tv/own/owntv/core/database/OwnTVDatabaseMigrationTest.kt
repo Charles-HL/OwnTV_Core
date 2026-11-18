@@ -152,8 +152,9 @@ class OwnTVDatabaseMigrationTest {
             assertColumnValue(sqlite, "sources", "liveEnginePreference", 10, null)
             assertColumnValue(sqlite, "sources", "liveLatencyMode", 10, null)
             assertColumnValue(sqlite, "sources", "liveLatencyCustomSecs", 10, -1L)
-            // v35: the per-item remembered A/V-sync offset, nullable = "no per-item choice".
-            assertColumnExists(sqlite, "playback_prefs", "audioDelayMs")
+            // v35 added the per-item A/V-sync offset to playback_prefs; v54 dropped it again (since v44 it
+            // lives in playback_quirks).
+            assertEquals(0L, countRows(sqlite, "SELECT COUNT(*) FROM pragma_table_info('playback_prefs') WHERE name = 'audioDelayMs'"))
             // v36: the deleted-user-data markers local sync merges on. New and empty — an upgrade
             // must not invent deletions.
             assertTableExists(sqlite, "user_data_tombstones")
@@ -544,10 +545,10 @@ class OwnTVDatabaseMigrationTest {
     }
 
     /**
-     * v43 → v44, from the published baseline (core-1.0.57 ships v43). Additive only: the
-     * remembered zoom / volume / delay a user already has must survive untouched and read as
-     * "no playlist known" (`sourceId = -1`) until the startup step fills it in; the new table and
-     * every new column must exist, and a new quirk row must be writable.
+     * v43 → v44, from the published baseline (core-1.0.57 ships v43). The remembered zoom / volume /
+     * delay a user already has must survive: zoom and volume on the row, which v54 then gives its
+     * playlist, and the delay on the stream's shared row, where v54 moves it. The new table and every
+     * new column must exist, and a new quirk row must be writable.
      */
     @Test
     fun migrateVersion43To44_addsPlaybackQuirksAndPerPlaylistColumns_keepingPrefs() {
@@ -575,24 +576,30 @@ class OwnTVDatabaseMigrationTest {
             listOf("catchupTimezone", "catchupOffsetMin", "vodEnginePreference", "liveTuneTimeoutSecs", "httpReferer")
                 .forEach { assertColumnExists(sqlite, "sources", it) }
 
-            // The user's row came through whole, with the new columns at their "unknown" values.
+            // The user's row came through, its playlist learned from its key, the track columns unknown.
             assertCount(sqlite, "playback_prefs", 1)
-            sqlite.prepare("SELECT zoomMode, volumeBoost, audioDelayMs, sourceId, audioLang, subtitleLang FROM playback_prefs").use {
+            sqlite.prepare("SELECT zoomMode, volumeBoost, sourceId, audioLang, subtitleLang FROM playback_prefs").use {
                 assertTrue(it.step())
                 assertEquals("FILL", it.getText(0))
                 assertEquals(130L, it.getLong(1))
-                assertEquals(250L, it.getLong(2))
-                assertEquals(-1L, it.getLong(3))
+                assertEquals(10L, it.getLong(2))
+                assertTrue(it.isNull(3))
                 assertTrue(it.isNull(4))
-                assertTrue(it.isNull(5))
+            }
+            // Its delay is the stream's now.
+            assertCount(sqlite, "playback_quirks", 1)
+            sqlite.prepare("SELECT sourceId, mediaType, audioDelayMs FROM playback_quirks WHERE contentKey = '10:LIVE:bbc-one'").use {
+                assertTrue(it.step())
+                assertEquals(10L, it.getLong(0))
+                assertEquals("LIVE", it.getText(1))
+                assertEquals(250L, it.getLong(2))
             }
 
-            assertCount(sqlite, "playback_quirks", 0)
             sqlite.execSQL(
                 "INSERT INTO playback_quirks (contentKey, sourceId, mediaType, enginePin, audioOnly, audioDelayMs, updatedAt) " +
-                    "VALUES ('10:LIVE:bbc-one', 10, 'LIVE', 'MPV', NULL, 250, 6)",
+                    "VALUES ('10:LIVE:bbc-two', 10, 'LIVE', 'MPV', NULL, 250, 6)",
             )
-            assertCount(sqlite, "playback_quirks", 1)
+            assertCount(sqlite, "playback_quirks", 2)
         } finally {
             db.close()
         }
@@ -625,6 +632,58 @@ class OwnTVDatabaseMigrationTest {
                 assertEquals("Parasite", it.getText(0))
                 assertTrue(it.isNull(1))
             }
+        } finally {
+            db.close()
+        }
+    }
+
+    /**
+     * v53 → v54 drops `playback_prefs.audioDelayMs`. A delay still in it moves to the stream's shared
+     * row first: the newest one where two profiles disagree, never over a shared delay set more
+     * recently, a stream-URL key included. A row that remembered only the delay goes; the rest stay.
+     */
+    @Test
+    fun migrateVersion53To54_movesLeftoverDelays_thenDropsTheColumn() {
+        context.deleteDatabase(DB_NAME)
+        val db53 = context.openOrCreateDatabase(DB_NAME, Context.MODE_PRIVATE, null)
+        try {
+            executeSchemaQueries(db53, "tv.own.owntv.core.database.OwnTVDatabase/53.json")
+            db53.execSQL("INSERT INTO profiles (id, name, avatarColor, avatarId, isKids, pinHash, createdAt) VALUES (1, 'Primary', 1122867, 7, 0, NULL, 1)")
+            db53.execSQL("INSERT INTO profiles (id, name, avatarColor, avatarId, isKids, pinHash, createdAt) VALUES (2, 'Second', 1122867, 7, 0, NULL, 1)")
+            val insert = "INSERT INTO playback_prefs (profileId, contentKey, zoomMode, volumeBoost, audioDelayMs, updatedAt, sourceId, audioLang, subtitleLang) VALUES "
+            db53.execSQL(insert + "(1, '10:LIVE:a', 'FILL', NULL, 100, 5, 10, NULL, NULL)")
+            db53.execSQL(insert + "(2, '10:LIVE:a', NULL, NULL, 300, 7, 10, NULL, NULL)")
+            db53.execSQL(insert + "(1, '20:MOVIE:b', NULL, NULL, 50, 3, -1, NULL, NULL)")
+            db53.execSQL(insert + "(1, 'http://example.test/1.ts', NULL, NULL, 70, 4, -1, 'de', NULL)")
+            db53.execSQL(
+                "INSERT INTO playback_quirks (contentKey, sourceId, mediaType, enginePin, audioOnly, audioDelayMs, updatedAt) " +
+                    "VALUES ('20:MOVIE:b', 20, 'MOVIE', NULL, NULL, 999, 9)",
+            )
+            db53.version = 53
+        } finally {
+            db53.close()
+        }
+
+        val db = openWithAllMigrations()
+        try {
+            val sqlite = openForAssertions(db)
+            assertEquals(0L, countRows(sqlite, "SELECT COUNT(*) FROM pragma_table_info('playback_prefs') WHERE name = 'audioDelayMs'"))
+            // Profile 1's zoom row and the URL-keyed row with a language stay; the two delay-only rows go.
+            assertCount(sqlite, "playback_prefs", 2)
+            sqlite.prepare("SELECT zoomMode, sourceId FROM playback_prefs WHERE profileId = 1 AND contentKey = '10:LIVE:a'").use {
+                assertTrue(it.step())
+                assertEquals("FILL", it.getText(0))
+                assertEquals(10L, it.getLong(1))
+            }
+            fun quirk(key: String): Triple<Long, String, Long> =
+                sqlite.prepare("SELECT sourceId, mediaType, audioDelayMs FROM playback_quirks WHERE contentKey = ?").use {
+                    it.bindText(1, key)
+                    assertTrue(key, it.step())
+                    Triple(it.getLong(0), it.getText(1), it.getLong(2))
+                }
+            assertEquals(Triple(10L, "LIVE", 300L), quirk("10:LIVE:a"))
+            assertEquals(Triple(20L, "MOVIE", 999L), quirk("20:MOVIE:b"))
+            assertEquals(Triple(-1L, "LIVE", 70L), quirk("http://example.test/1.ts"))
         } finally {
             db.close()
         }

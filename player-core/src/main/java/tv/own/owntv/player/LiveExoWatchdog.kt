@@ -47,7 +47,7 @@ class LiveExoWatchdog(
      */
     private val stillOurs: () -> Boolean,
     /** Hand the channel to the next rung of the ladder, saying why in words a support log can use. */
-    private val handOver: suspend (reason: String) -> Unit,
+    private val handOver: suspend (HandOver) -> Unit,
     /** The channel produced a picture: the opening budget has been met and its alarm can stand down. */
     private val onOpened: () -> Unit,
     /**
@@ -70,11 +70,11 @@ class LiveExoWatchdog(
         // ExoPlayer never reaches ERROR, while a video track never renders a single frame.
         launch {
             engine.noVideoDetected.first { it }
-            if (stillOurs()) handOver("no video frame rendered (audio plays, no picture)")
+            if (stillOurs()) handOver(HandOver("no video frame rendered (audio plays, no picture)"))
         }
         launch {
             engine.segmentsRefused.first { it }
-            if (stillOurs()) handOver("provider refuses ExoPlayer's signed segment URLs")
+            if (stillOurs()) handOver(HandOver("provider refuses ExoPlayer's signed segment URLs"))
         }
         watchUntilSettled(channelName)
         // The two listeners above never finish on a healthy channel. Left running they keep this watch
@@ -117,14 +117,14 @@ class LiveExoWatchdog(
         if (!stillOurs()) return
 
         if (terminal == null) {
-            handOver("ExoPlayer never opened it (${openBudgetMs / 1000}s, no frame and no error)")
+            handOver(HandOver("ExoPlayer never opened it (${openBudgetMs / 1000}s, no frame and no error)"))
             return
         }
         if (terminal == LivePreviewEngine.State.ERROR) {
             // onPlayerError assigns the state before the detail, and a collector can resume inline on
             // Dispatchers.Main.immediate — so yield first, or the detail is always read as null.
             yield()
-            handOver("ExoPlayer error before first frame: ${engine.errorInfo.value?.raw ?: engine.error.value}")
+            handOver(HandOver.engineError("ExoPlayer error before first frame", engineDetail()))
             return
         }
 
@@ -137,7 +137,7 @@ class LiveExoWatchdog(
         delay(TRACK_SETTLE_MS)
         if (!stillOurs()) return
         if (engine.audioUnsupported.value) {
-            handOver("no decodable audio track")
+            handOver(HandOver("no decodable audio track"))
             return
         }
         watchAfterFirstFrame(channelName)
@@ -184,9 +184,9 @@ class LiveExoWatchdog(
             if (recovered == LivePreviewEngine.State.IDLE) return
             yield() // let onPlayerError finish assigning the detail (see the ERROR branch above)
             val reason = if (left == LivePreviewEngine.State.ERROR || recovered != null) {
-                "ExoPlayer gave up mid-stream: ${engine.errorInfo.value?.raw ?: engine.error.value}"
+                HandOver.engineError("ExoPlayer gave up mid-stream", engineDetail())
             } else {
-                "played, then stalled for ${STALL_HANDOFF_MS / 1000}s without recovering"
+                HandOver("played, then stalled for ${STALL_HANDOFF_MS / 1000}s without recovering")
             }
             handOver(reason)
             // Handed over, but with nowhere to go ExoPlayer kept the channel and is still reconnecting.
@@ -198,11 +198,14 @@ class LiveExoWatchdog(
             if (settled == LivePreviewEngine.State.PLAYING) continue
             if (settled == LivePreviewEngine.State.ERROR && engine.contentBroken) {
                 yield() // see the ERROR branch above
-                handOver("ExoPlayer can't play this stream's content: ${engine.errorInfo.value?.raw ?: engine.error.value}")
+                handOver(HandOver.engineError("ExoPlayer can't play this stream's content", engineDetail()))
             }
             return
         }
     }
+
+    /** The engine's own words for its failure: the raw error when it has one, else the typed failure. */
+    private fun engineDetail(): String? = engine.errorInfo.value?.raw ?: engine.error.value?.toString()
 
     companion object {
         /**
