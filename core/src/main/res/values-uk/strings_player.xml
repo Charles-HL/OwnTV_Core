@@ -256,4 +256,84 @@
     <string name="player_subtitles_free_account">Безкоштовний</string>
     <string name="player_subtitles_enter_credentials">Введіть ім’я користувача й пароль OpenSubtitles.</string>
     <string name="player_subtitles_invalid_credentials">OpenSubtitles не вдалося увійти з цими даними облікового запису.</string>
+    <string name="player_subtitles_sign_in_network_error">Не вдалося зв’язатися з OpenSubtitles. Перевірте підключення до інтернету й спробуйте ще раз.</string>
+    <string name="player_subtitles_sign_in_server_error">OpenSubtitles відхилив запит (помилка <xliff:g id="code">%1$d</xliff:g>). З підключенням до інтернету все гаразд — спробуйте пізніше й назвіть цей номер, якщо повідомлятимете про проблему.</string>
+    <string name="player_subtitles_refresh_network_error">Не вдалося оновити OpenSubtitles. Перевірте підключення до інтернету.</string>
+    <string name="player_subtitles_no_matches_all_languages">Відповідних субтитрів не знайдено. Спробуйте змінити назву в пошуку.</string>
+    <string name="player_subtitles_no_matches_chosen_language">Субтитрів вибраною мовою не знайдено.</string>
+    <string name="player_subtitles_search_language">Мова пошуку</string>
+    <string name="player_reason_software_fallback">Перейшло на програмне декодування</string>
+    <string name="player_reason_copy_mode_fallback">Перейшло на декодування в режимі копіювання</string>
+    <string name="player_reason_archive_software_fallback">Архів повторно відкрито в програмному декодуванні</string>
+    <string name="player_reason_stereo_fallback">Перемкнено на стереозвук</string>
+    <string name="player_reason_one_session_provider">Провайдер дозволяє лише одну сесію одночасно</string>
+    <string name="player_reason_mpv_handoff">Цей канал передано в mpv</string>
+    <string name="player_reason_live_fallback">Пряме відтворення перейшло на резервний режим</string>
+    <string name="player_reason_live_no_fallback">Пряме відтворення не вдалося — резервних режимів не залишилося</string>
+    <string name="player_reason_stream_report">Звіт про потік</string>
+    <string name="player_stream_audio_output">Вихід звуку</string>
+    <string name="player_stream_live_buffer">Буфер прямого ефіру</string>
+    <string name="player_stream_audio_passthrough">наскрізна передача (декодує телевізор або ресивер)</string>
+    <string name="player_stream_audio_decoded_in_app">декодується в застосунку</string>
+    <string name="player_stream_audio_pcm"><xliff:g id="channels">%1$s</xliff:g> PCM</string>
+    <string name="player_stream_multichannel_allowed">багатоканальний звук дозволено</string>
+    <string name="player_stream_fell_back">перейшло на резерв: <xliff:g id="reason">%1$s</xliff:g></string>
+    <string name="player_stream_preroll_video">попередня буферизація відео: <xliff:g id="seconds">%1$s</xliff:g>с</string>
+    <string name="player_stream_preroll_off">попередня буферизація вимкнена</string>
+    <string name="player_stream_depth">глибина <xliff:g id="seconds">%1$s</xliff:g>с</string>
+    <string name="player_stream_readahead">випереджальне читання <xliff:g id="seconds">%1$s</xliff:g>с</string>
+    <string name="player_stream_playlist_override">перевизначення плейлиста</string>
+    <string name="player_error_hardware_format">Відеообладнання цього телевізора не може декодувати <xliff:g id="resolution">%1$s</xliff:g> <xliff:g id="codec">%2$s</xliff:g>. З файлом усе гаразд, але телевізор не може відтворити цей формат у такій роздільній здатності.</string>
+    <string name="player_report_saved">Звіт про потік збережено в журналі відтворення</string>
+    <string name="player_subtitles_filter_title">Фільтрувати за мовою</string>
+    <string name="player_subtitles_filter_description">Вимкнено: показуються всі мови, які OpenSubtitles має для назви, тож ви можете вибрати з повного списку. Увімкнено: показується лише вибрана вами мова.</string>
+    <string name="player_subtitles_search_language_description">У результатах пошуку відображаються лише субтитри цією мовою. Натиснувши «Усі мови» у результатах, ви можете побачити все для одного пошуку.</string>
+    <string name="player_subtitles_language_not_set">Не задано</string>
+    <string name="player_frame_rate_prompt_title">Цей канал може відтворюватися ривками</string>
+    <string name="player_frame_rate_prompt_description">Відтворюється з частотою <xliff:g id="fps">%1$d</xliff:g> к/с, тоді як ваш телевізор працює на <xliff:g id="current_hz">%2$d</xliff:g> Гц і не може показати ці кадри рівномірно — рух виглядає трохи смикано.\n\nАвтоматична частота кадрів перемикає телевізор на <xliff:g id="target_hz">%3$d</xliff:g> Гц, поки ви дивитеся, і повертає її після перегляду. Деякі телевізори на мить гаснуть під час зміни частоти; вимкнути цю функцію можна в «Налаштування → Зображення → Частота кадрів».</string>
+    <string name="player_frame_rate_turn_on">Увімкнути</string>
+    <string name="player_error_data_saver">Увімкнено економію трафіку, тому потокове відтворення через мобільний інтернет вимкнено. Підключіться до Wi-Fi або вимкніть «Економію трафіку» в «Налаштуваннях».</string>
+    <string name="player_sleep_timer">Таймер сну</string>
+    <string name="player_sleep_timer_end_of_programme">Кінець передачі</string>
+    <string name="player_sleep_timer_end_of_movie">Кінець фільму</string>
+    <string name="player_sleep_timer_end_of_episode">Кінець епізоду</string>
+    <string name="player_sleep_timer_remaining">Зупиниться через <xliff:g id="time">%1$s</xliff:g></string>
+    <string name="player_sleep_timer_screen_off">Також вимкнути екран</string>
+    <string name="player_sleep_timer_screen_off_explanation">Використовується лише для вимкнення екрана після завершення таймера сну і ніколи в інший час.</string>
+    <string name="player_sleep_timer_screen_off_unavailable">Цей пристрій не дозволяє застосункам вимикати екран.</string>
+    <string name="player_pip_expand">Розгорнути</string>
+    <string name="player_error_cast_unsupported">Пристрій, на який ви транслюєте, не може відтворити цей потік. Багато каналів у прямому ефірі використовують формат, який він не підтримує, тож відтворіть його на своєму телефоні.</string>
+    <string name="player_cast_playing_on">Відтворюється на <xliff:g id="device">%1$s</xliff:g></string>
+    <string name="multiview_button">Мультиперегляд</string>
+    <string name="multiview_add_channel">Додати канал</string>
+    <string name="multiview_refused_single">Ваш провайдер дозволяє лише один потік одночасно.</string>
+    <string name="multiview_refused_single_recording">Ваш провайдер дозволяє лише один потік одночасно, і його використовує запис.</string>
+    <plurals name="multiview_refused_all_in_use">
+        <item quantity="one">Ваш провайдер дозволяє <xliff:g id="count">%1$d</xliff:g> потік одночасно, і він використовується.</item>
+        <item quantity="few">Ваш провайдер дозволяє <xliff:g id="count">%1$d</xliff:g> потоки одночасно, і всі вони використовуються.</item>
+        <item quantity="many">Ваш провайдер дозволяє <xliff:g id="count">%1$d</xliff:g> потоків одночасно, і всі вони використовуються.</item>
+        <item quantity="other">Ваш провайдер дозволяє <xliff:g id="count">%1$d</xliff:g> потоків одночасно, і всі вони використовуються.</item>
+    </plurals>
+    <plurals name="multiview_refused_all_in_use_recording">
+        <item quantity="one">Ваш провайдер дозволяє <xliff:g id="count">%1$d</xliff:g> потік одночасно. Із них записується: <xliff:g id="recording">%2$d</xliff:g>.</item>
+        <item quantity="few">Ваш провайдер дозволяє <xliff:g id="count">%1$d</xliff:g> потоки одночасно. Із них записується: <xliff:g id="recording">%2$d</xliff:g>.</item>
+        <item quantity="many">Ваш провайдер дозволяє <xliff:g id="count">%1$d</xliff:g> потоків одночасно. Із них записується: <xliff:g id="recording">%2$d</xliff:g>.</item>
+        <item quantity="other">Ваш провайдер дозволяє <xliff:g id="count">%1$d</xliff:g> потоків одночасно. Із них записується: <xliff:g id="recording">%2$d</xliff:g>.</item>
+    </plurals>
+    <string name="multiview_refused_reserved">Одне підключення залишено вільним, щоб ви могли продовжувати перегляд. Змініть це в «Налаштуваннях», щоб записувати на всіх підключеннях.</string>
+    <string name="multiview_decoder_exhausted">Цей телевізор не може декодувати ще один канал одночасно.</string>
+    <string name="multiview_decoder_exhausted_mobile">Цей пристрій не може декодувати ще один канал одночасно.</string>
+    <string name="multiview_tile_change_channel">Змінити канал</string>
+    <string name="multiview_tile_fullscreen">На весь екран</string>
+    <string name="multiview_tile_remove">Очистити плитку</string>
+    <string name="multiview_audio_tile">Звук на цій плитці</string>
+    <string name="multiview_add_to">Додати до мультиперегляду</string>
+    <string name="multiview_added">Збережено для мультиперегляду · <xliff:g id="count">%1$d</xliff:g> з <xliff:g id="total">%2$d</xliff:g>. Увімкніть канал, щоб відкрити сітку.</string>
+    <string name="multiview_tile_sound_only">Лише звук</string>
+    <string name="multiview_tile_show_picture">Показати зображення</string>
+    <string name="multiview_sound_only_note">Лише звук — усе одно один із потоків вашого провайдера</string>
+    <string name="player_trailer_skip">Перемотка 10 с</string>
+    <string name="player_trailer_blocked_title">Цей трейлер не можна відтворити в OwnTV</string>
+    <string name="player_trailer_blocked_body">Його власник дозволяє відтворювати його лише на YouTube.</string>
+    <string name="player_trailer_open_youtube">Відкрити в YouTube</string>
 </resources>

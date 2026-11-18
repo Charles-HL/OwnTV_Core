@@ -5,4 +5,10 @@
     <string name="content_programmes_later">Пізніше</string>
     <string name="content_catchup">Архів</string>
     <string name="content_catchup_title">Архів · <xliff:g id="channel">%1$s</xliff:g></string>
+    <plurals name="content_downloading_items">
+        <item quantity="one">Завантажується <xliff:g id="count">%1$d</xliff:g> елемент</item>
+        <item quantity="few">Завантажуються <xliff:g id="count">%1$d</xliff:g> елементи</item>
+        <item quantity="many">Завантажується <xliff:g id="count">%1$d</xliff:g> елементів</item>
+        <item quantity="other">Завантажується <xliff:g id="count">%1$d</xliff:g> елементів</item>
+    </plurals>
 </resources>
