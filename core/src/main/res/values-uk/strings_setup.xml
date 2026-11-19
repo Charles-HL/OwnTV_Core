@@ -236,9 +236,9 @@
     <string name="companion_error_missing_fields">Не заповнено обов\'язкові поля.</string>
     <string name="setup_invalid_locale">Ця резервна копія містила непідтримувану мову застосунку. Відновлення пройшло успішно, але вашу поточну мову збережено.</string>
     <string name="setup_prefer_hls_live_tv">Надавати перевагу HLS для ТБ наживо</string>
-    <string name="setup_prefer_hls_description">Надавати пріоритет HLS (.m3u8) над MPEG-TS для ТБ наживо. Якщо HLS не працює, буде використано MPEG-TS. Архів завжди використовує MPEG-TS.</string>
-    <string name="setup_prefer_hls_description_supported">Надавати пріоритет HLS (.m3u8) над MPEG-TS для ТБ наживо. Якщо HLS не працює, буде використано MPEG-TS. Архів завжди використовує MPEG-TS. Ваш провайдер повідомляє про підтримку HLS.</string>
-    <string name="setup_prefer_hls_description_unsupported">Надавати пріоритет HLS (.m3u8) над MPEG-TS для ТБ наживо. Якщо HLS не працює, буде використано MPEG-TS. Архів завжди використовує MPEG-TS. Ваш провайдер не повідомляє про підтримку HLS — але ви все одно можете спробувати.</string>
+    <string name="setup_prefer_hls_description">Надавати пріоритет HLS (.m3u8) над MPEG-TS для ТБ наживо. Якщо HLS не працює, буде використано MPEG-TS.</string>
+    <string name="setup_prefer_hls_description_supported">Надавати пріоритет HLS (.m3u8) над MPEG-TS для ТБ наживо. Якщо HLS не працює, буде використано MPEG-TS. Ваш провайдер повідомляє про підтримку HLS.</string>
+    <string name="setup_prefer_hls_description_unsupported">Надавати пріоритет HLS (.m3u8) над MPEG-TS для ТБ наживо. Якщо HLS не працює, буде використано MPEG-TS. Ваш провайдер не повідомляє про підтримку HLS — але ви все одно можете спробувати.</string>
     <string name="setup_prefer_hls_catchup">Надавати перевагу HLS для архіву</string>
     <string name="setup_prefer_hls_catchup_description">Запитувати передачі з архіву як HLS (.m3u8) замість MPEG-TS. Якщо HLS не працює, буде використано MPEG-TS. Архів у HLS пропонують лише деякі провайдери.</string>
     <string name="setup_hls_test_support">Перевірити підтримку HLS</string>
