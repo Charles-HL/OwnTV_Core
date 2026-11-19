@@ -689,6 +689,36 @@ class OwnTVDatabaseMigrationTest {
         }
     }
 
+    /** v54 → v55 adds `sources.catchupPreferHls`, off for a playlist that already exists. */
+    @Test
+    fun migrateVersion54To55_addsCatchupPreferHls_offForExistingPlaylists() {
+        context.deleteDatabase(DB_NAME)
+        val db54 = context.openOrCreateDatabase(DB_NAME, Context.MODE_PRIVATE, null)
+        try {
+            executeSchemaQueries(db54, "tv.own.owntv.core.database.OwnTVDatabase/54.json")
+            db54.execSQL(
+                "INSERT INTO sources (id, name, type, url, syncLive, syncMovies, syncSeries, hlsSupported, preferHls, " +
+                    "livePrerollSecs, liveLatencyCustomSecs, maxConnections, maxConnectionsProbedAt, createdAt) " +
+                    "VALUES (1, 'Panel', 'XTREAM', 'http://panel.test', 1, 1, 1, 0, 1, -1, -1, 0, 0, 1)",
+            )
+            db54.version = 54
+        } finally {
+            db54.close()
+        }
+
+        val db = openWithAllMigrations()
+        try {
+            val sqlite = openForAssertions(db)
+            sqlite.prepare("SELECT preferHls, catchupPreferHls FROM sources WHERE id = 1").use {
+                assertTrue(it.step())
+                assertEquals(1L, it.getLong(0))
+                assertEquals(0L, it.getLong(1))
+            }
+        } finally {
+            db.close()
+        }
+    }
+
     @Test
     fun migrateVersion45To46_dropsSoftwareDecode_keepingQuirkRows() {
         context.deleteDatabase(DB_NAME)

@@ -233,6 +233,8 @@
     <string name="setup_prefer_hls_description">HLS (.m3u8) بخە پێش MPEG-TS بۆ تیڤیی ڕاستەوخۆ. ئەگەر HLS سەرکەوتوو نەبوو دەگەڕێتەوە بۆ MPEG-TS. Catch-up هەمیشە MPEG-TS بەکاردەهێنێت.</string>
     <string name="setup_prefer_hls_description_supported">HLS (.m3u8) بخە پێش MPEG-TS بۆ تیڤیی ڕاستەوخۆ. ئەگەر HLS سەرکەوتوو نەبوو دەگەڕێتەوە بۆ MPEG-TS. Catch-up هەمیشە MPEG-TS بەکاردەهێنێت. دابینکەرەکەت پشتگیری HLS ڕادەگەیەنێت.</string>
     <string name="setup_prefer_hls_description_unsupported">HLS (.m3u8) بخە پێش MPEG-TS بۆ تیڤیی ڕاستەوخۆ. ئەگەر HLS سەرکەوتوو نەبوو دەگەڕێتەوە بۆ MPEG-TS. Catch-up هەمیشە MPEG-TS بەکاردەهێنێت. دابینکەرەکەت پشتگیری HLS ڕاناگەیەنێت — هەر دەتوانیت تاقی بکەیتەوە.</string>
+    <string name="setup_prefer_hls_catchup">HLS بۆ Catch-up بخە پێش</string>
+    <string name="setup_prefer_hls_catchup_description">بەرنامەکانی Catch-up وەک HLS (.m3u8) داوا بکە لە جیاتی MPEG-TS. ئەگەر HLS سەرکەوتوو نەبوو دەگەڕێتەوە بۆ MPEG-TS. تەنها هەندێک دابینکەر Catch-up وەک HLS پێشکەش دەکەن.</string>
     <string name="setup_hls_test_support">تاقیکردنەوەی پشتگیری HLS</string>
     <string name="setup_hls_testing">تاقیکردنەوەی HLS…</string>
     <string name="setup_hls_test_failed">تاقیکردنەوە سەرکەوتوو نەبوو: <xliff:g id="reason">%1$s</xliff:g></string>

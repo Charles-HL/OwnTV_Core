@@ -2709,7 +2709,10 @@ class OwnTVPlayer(
             subtitleFontsDir?.let { setOptionString("sub-fonts-dir", it.absolutePath) }
             setOptionString("vo", if (useDirect()) "mediacodec_embed" else "gpu")
             setOptionString("gpu-context", "android")
-            setOptionString("hwdec", if (useDirect()) "mediacodec" else "no")
+            // The current item's decoder, not merely "direct or not": a core rebuilt by a hard reset keeps the
+            // item state, and the next catch-up archive (same copy path, so no reconfig runs) would
+            // otherwise decode in software, which drops frames at 1080p on a TV CPU.
+            setOptionString("hwdec", targetHwdec())
             setOptionString("hwdec-codecs", HWDEC_CODECS)
             setOptionString("ao", "audiotrack")
             // Surround sound (opt-in, default off): decode Dolby/DTS to MULTICHANNEL LPCM (5.1/7.1) over HDMI. The
@@ -3050,6 +3053,18 @@ class OwnTVPlayer(
     }
 
     /**
+     * The `.ts` address of a catch-up asked for as `.m3u8` (the playlist's "Prefer HLS for catch-up"), once
+     * per item; null for anything else. MPEG-TS is the form every timeshift server serves, so it is where an
+     * HLS request that will not open goes back to.
+     */
+    private fun archiveHlsFallbackUrl(): String? {
+        if (isLiveContent || !item.archiveThisItem || item.triedAltFormat) return null
+        val base = item.altFormatBaseUrl ?: return null
+        if (!base.substringBefore('?').endsWith(".m3u8", ignoreCase = true)) return null
+        return alternateFormatUrl()
+    }
+
+    /**
      * Reopen this stream with FFmpeg's error tolerance on — the rung for a feed mpv's strict demuxer
      * defaults reject outright, and the one that closes most of the "VLC plays it, we don't" gap.
      * Remembered for the session so the same channel doesn't pay the failed strict attempt again.
@@ -3367,10 +3382,11 @@ class OwnTVPlayer(
                         archive = item.archiveThisItem,
                         triedFrozenReset = item.triedFrozenReset,
                         triedOpenReset = item.triedOpenReset,
+                        openTimeoutMs = if (archiveHlsFallbackUrl() != null) FilmWatchdog.ARCHIVE_HLS_OPEN_TIMEOUT_MS else FilmWatchdog.OPEN_TIMEOUT_MS,
                     )
                     // Read off-thread: this loop runs on the main scope, and a blocking JNI read
                     // per tick is exactly what the threading rule at the top of this file forbids.
-                    when (watchdog.step(tick) { readProperty("video-bitrate")?.toLongOrNull()?.let { it > 0 } ?: false }) {
+                    when (val step = watchdog.step(tick) { readProperty("video-bitrate")?.toLongOrNull()?.let { it > 0 } ?: false }) {
                         FilmWatchdog.Step.WAIT -> continue
                         FilmWatchdog.Step.PLAYING -> {
                             // Playing normally. An archive is still watched, for a provider that stops sending.
@@ -3411,7 +3427,20 @@ class OwnTVPlayer(
                             return@launch
                         }
                         FilmWatchdog.Step.SESSION_REFUSED -> return@launch
-                        FilmWatchdog.Step.OPEN_RESET -> {
+                        FilmWatchdog.Step.OPEN_RESET, FilmWatchdog.Step.OPEN_AGAIN -> if (archiveHlsFallbackUrl() != null) {
+                            // A catch-up asked for as HLS that has not opened even in its longer allowance: the
+                            // same address again, or on ExoPlayer, waits on the same slow playlist. Ask for the
+                            // programme as MPEG-TS instead. mpv may be blocked in that read, so it is rebuilt.
+                            val tsInstead = archiveHlsFallbackUrl()!!
+                            item.triedAltFormat = true
+                            android.util.Log.w(TAG, "watchdog T_OPEN — catch-up as HLS did not open in ${elapsed}ms, asking for MPEG-TS")
+                            load.expectingPlayback = false
+                            _buffering.value = true
+                            hardReset()
+                            delay(CORE_RESET_SETTLE_MS)
+                            loadUrl(tsInstead, currentMetaSnapshot(), isLiveContent, 0L, resetRetries = false, isArchive = true)
+                            return@launch
+                        } else if (step == FilmWatchdog.Step.OPEN_RESET) {
                             // Stage 1: demuxer hung during probe — stuck, not just slow.
                             // First strike: reset silently and reload the same item once. The common
                             // trigger is auto-play advancing while the provider still holds the finished
@@ -3430,8 +3459,7 @@ class OwnTVPlayer(
                                 loadUrl(url, currentMetaSnapshot(), isLiveContent, seekMs, resetRetries = false, isArchive = archive)
                             }
                             return@launch
-                        }
-                        FilmWatchdog.Step.OPEN_AGAIN -> {
+                        } else {
                             // The archive ladder's missing rung. The decode-failure branch below already
                             // hands a failing archive to ExoPlayer, but a demuxer that never opens at all only
                             // ever hard-reset mpv, three times, and then showed an error: an archive mpv simply
@@ -5573,6 +5601,19 @@ class OwnTVPlayer(
             )
             return
         }
+        // A catch-up asked for as `.m3u8` (the playlist's "Prefer HLS for catch-up") that the timeshift server
+        // refused: ask for the same programme as `.ts` before anything else. mpv answered, so it is not stuck,
+        // and the reset below would hand the HLS address to ExoPlayer, which the same server refuses too.
+        val tsInstead = if (!load.fileLoaded && load.expectingPlayback) archiveHlsFallbackUrl() else null
+        if (tsInstead != null) {
+            item.triedAltFormat = true
+            android.util.Log.w(TAG, "catch-up as HLS refused — asking for MPEG-TS")
+            scope.launch {
+                delay(FALLBACK_RETRY_DELAY_MS)
+                if (gen == loadGeneration) loadUrl(tsInstead, currentMetaSnapshot(), isLiveContent, 0L, resetRetries = false)
+            }
+            return
+        }
         if (shouldHardResetOnEarlyEndFile(load.fileLoaded, load.expectingPlayback, isLiveContent)) {
             android.util.Log.w(TAG, "END_FILE before FILE_LOADED — demuxer rejected file, hard-resetting")
             load.expectingPlayback = false; _buffering.value = false
@@ -5600,11 +5641,15 @@ class OwnTVPlayer(
                 // serves HLS — try the `.m3u8` variant of the same channel before erroring (we
                 // default to `.ts` since it's more widely supported, with this as the safety net).
                 //
-                // Live only, on purpose. An archive is never worth swapping to `.m3u8`: the
-                // timeshift server has no HLS repackager, so the swap can only ever waste a rung
-                // and several seconds in front of the user. Catch-up's alternate is the PHP query
-                // form below, which is a genuinely different endpoint rather than a format guess.
-                val altFormat = if (isLiveContent && !item.triedAltFormat && item.autoRetries >= 1) alternateFormatUrl() else null
+                // An archive is never swapped TO `.m3u8`: many timeshift servers have no HLS
+                // repackager, so that swap would only waste a rung in front of the user. One asked for
+                // as `.m3u8` goes back to `.ts` at once — see [archiveHlsFallbackUrl] — before the PHP
+                // query form below.
+                val altFormat = when {
+                    item.triedAltFormat -> null
+                    isLiveContent -> if (item.autoRetries >= 1) alternateFormatUrl() else null
+                    else -> archiveHlsFallbackUrl()
+                }
                 val catchupAlt =
                     if (!isLiveContent && !item.triedCatchupPhpForm) {
                         tv.own.owntv.core.epg.CatchupUrl.timeshiftPhpAlternate(currentUrl)

@@ -84,6 +84,7 @@
 5	json	core/src/main/java/tv/own/owntv/core/backup/BackupManager.kt	c
 2	json	core/src/main/java/tv/own/owntv/core/backup/BackupManager.kt	cache
 3	json	core/src/main/java/tv/own/owntv/core/backup/BackupManager.kt	catchupOffsetMin
+3	json	core/src/main/java/tv/own/owntv/core/backup/BackupManager.kt	catchupPreferHls
 3	json	core/src/main/java/tv/own/owntv/core/backup/BackupManager.kt	catchupTimezone
 3	json	core/src/main/java/tv/own/owntv/core/backup/BackupManager.kt	channelNameStrip
 3	json	core/src/main/java/tv/own/owntv/core/backup/BackupManager.kt	cleanChannelNames
@@ -644,6 +645,9 @@
 1	sql	core/src/main/java/tv/own/owntv/core/database/Migration53To54.kt	WHERE `sourceId` = -1 AND `contentKey` GLOB '[0-9]*:*'
 1	room-schema	core/src/main/java/tv/own/owntv/core/database/Migration53To54.kt	audioDelayMs
 1	room-schema	core/src/main/java/tv/own/owntv/core/database/Migration53To54.kt	playback_prefs
+1	sql	core/src/main/java/tv/own/owntv/core/database/Migration54To55.kt	ALTER TABLE `sources` ADD COLUMN `catchupPreferHls` INTEGER NOT NULL DEFAULT 0
+1	sql	core/src/main/java/tv/own/owntv/core/database/Migration54To55.kt	catchupPreferHls
+1	sql	core/src/main/java/tv/own/owntv/core/database/Migration54To55.kt	sources
 18	sql	core/src/main/java/tv/own/owntv/core/database/OwnTVDatabase.kt	)
 1	room-schema	core/src/main/java/tv/own/owntv/core/database/OwnTVDatabase.kt	,
 1	room-schema	core/src/main/java/tv/own/owntv/core/database/OwnTVDatabase.kt	?
@@ -1737,7 +1741,7 @@
 1	room-schema	core/src/main/java/tv/own/owntv/core/database/entity/MetadataEntities.kt	metadata_match
 1	room-schema	core/src/main/java/tv/own/owntv/core/database/entity/MetadataEntities.kt	tmdbId
 2	room-schema	core/src/main/java/tv/own/owntv/core/database/entity/MetadataEntities.kt	updatedAt
-2	room-schema	core/src/main/java/tv/own/owntv/core/database/entity/ProfileEntities.kt	0
+3	room-schema	core/src/main/java/tv/own/owntv/core/database/entity/ProfileEntities.kt	0
 1	sql	core/src/main/java/tv/own/owntv/core/database/entity/ProfileEntities.kt	1
 2	room-schema	core/src/main/java/tv/own/owntv/core/database/entity/ProfileEntities.kt	id
 2	room-schema	core/src/main/java/tv/own/owntv/core/database/entity/ProfileEntities.kt	profileId
@@ -1913,6 +1917,7 @@
 1	protocol	core/src/main/java/tv/own/owntv/core/epg/CatchupUrl.kt	end-timestamp
 1	protocol	core/src/main/java/tv/own/owntv/core/epg/CatchupUrl.kt	flussonic
 1	protocol	core/src/main/java/tv/own/owntv/core/epg/CatchupUrl.kt	lutc
+1	protocol	core/src/main/java/tv/own/owntv/core/epg/CatchupUrl.kt	m3u8
 1	protocol	core/src/main/java/tv/own/owntv/core/epg/CatchupUrl.kt	mpegts
 1	protocol	core/src/main/java/tv/own/owntv/core/epg/CatchupUrl.kt	now
 2	protocol	core/src/main/java/tv/own/owntv/core/epg/CatchupUrl.kt	offset
@@ -3440,11 +3445,13 @@
 1	technical	core/src/main/java/tv/own/owntv/core/sports/CompetitionNames.kt	tv
 1	technical	core/src/main/java/tv/own/owntv/core/sports/CompetitionNames.kt	uhd
 1	technical	core/src/main/java/tv/own/owntv/core/sports/CompetitionNames.kt	ß
-6	technical	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	\0
+7	empty	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	\0
 1	technical	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	$id-$i
 1	technical	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	(
 1	technical	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	,
+1	technical	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	.
 1	url	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	/i/
+1	technical	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	1.000
 1	url	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	://a.espncdn.com
 1	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	:00Z
 1	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	@
@@ -3488,7 +3495,11 @@
 1	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	fullStatus
 1	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	gameDate
 1	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	gameResult
+1	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	gamesBehind
+2	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	gamesDrawn
+2	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	gamesLost
 1	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	gamesPlayed
+2	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	gamesWon
 1	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	geoBroadcasts
 1	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	goal
 1	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	grouping
@@ -3512,7 +3523,7 @@
 1	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	location
 2	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	logo
 1	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	logos
-1	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	losses
+2	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	losses
 1	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	market
 1	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	media
 20	technical	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	name
@@ -3520,15 +3531,20 @@
 1	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	note
 1	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	opponent
 2	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	order
+1	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	otLosses
+1	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	overall
+1	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	overtimeLosses
 1	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	own-goal
 1	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	ownGoal
 1	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	participants
 1	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	penalty
 1	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	penaltyKick
 3	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	period
+1	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	playoffSeed
 1	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	pointDifferential
 3	technical	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	points
 1	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	pointsAgainst
+1	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	pointsDifference
 1	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	pointsFor
 1	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	position
 2	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	post
@@ -3560,18 +3576,19 @@
 1	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	subbedIn
 1	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	subbedOut
 1	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	substitution
-4	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	summary
+5	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	summary
 8	technical	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	team
 2	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	teams
 1	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	text
 2	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	tiebreak
-1	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	ties
+2	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	ties
 8	technical	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	type
 1	technical	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	v
 4	technical	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	value
 2	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	venue
+1	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	winPercent
 4	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	winner
-1	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	wins
+2	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	wins
 1	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	yellow-card
 1	json	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	yellowCard
 1	technical	core/src/main/java/tv/own/owntv/core/sports/EspnParser.kt	·
@@ -3759,6 +3776,7 @@
 2	json	core/src/main/java/tv/own/owntv/core/sports/SportsCacheJson.kt	fo
 2	json	core/src/main/java/tv/own/owntv/core/sports/SportsCacheJson.kt	for
 4	technical	core/src/main/java/tv/own/owntv/core/sports/SportsCacheJson.kt	g
+2	json	core/src/main/java/tv/own/owntv/core/sports/SportsCacheJson.kt	gb
 2	json	core/src/main/java/tv/own/owntv/core/sports/SportsCacheJson.kt	gd
 6	json	core/src/main/java/tv/own/owntv/core/sports/SportsCacheJson.kt	h
 2	technical	core/src/main/java/tv/own/owntv/core/sports/SportsCacheJson.kt	ht
@@ -3776,9 +3794,11 @@
 13	technical	core/src/main/java/tv/own/owntv/core/sports/SportsCacheJson.kt	n
 2	json	core/src/main/java/tv/own/owntv/core/sports/SportsCacheJson.kt	no
 2	json	core/src/main/java/tv/own/owntv/core/sports/SportsCacheJson.kt	o
+2	json	core/src/main/java/tv/own/owntv/core/sports/SportsCacheJson.kt	ot
 2	json	core/src/main/java/tv/own/owntv/core/sports/SportsCacheJson.kt	out
 2	json	core/src/main/java/tv/own/owntv/core/sports/SportsCacheJson.kt	ov
 10	json	core/src/main/java/tv/own/owntv/core/sports/SportsCacheJson.kt	p
+2	json	core/src/main/java/tv/own/owntv/core/sports/SportsCacheJson.kt	pc
 4	technical	core/src/main/java/tv/own/owntv/core/sports/SportsCacheJson.kt	pt
 6	technical	core/src/main/java/tv/own/owntv/core/sports/SportsCacheJson.kt	r
 6	technical	core/src/main/java/tv/own/owntv/core/sports/SportsCacheJson.kt	rk
@@ -4272,9 +4292,10 @@
 2	json	core/src/main/java/tv/own/owntv/core/sports/SportsConfig.kt	channels
 2	json	core/src/main/java/tv/own/owntv/core/sports/SportsConfig.kt	closed
 2	json	core/src/main/java/tv/own/owntv/core/sports/SportsConfig.kt	countries
+1	technical	core/src/main/java/tv/own/owntv/core/sports/SportsConfig.kt	cricket/all
 2	json	core/src/main/java/tv/own/owntv/core/sports/SportsConfig.kt	id
 2	json	core/src/main/java/tv/own/owntv/core/sports/SportsConfig.kt	kinds
-2	json	core/src/main/java/tv/own/owntv/core/sports/SportsConfig.kt	l
+4	json	core/src/main/java/tv/own/owntv/core/sports/SportsConfig.kt	l
 2	json	core/src/main/java/tv/own/owntv/core/sports/SportsConfig.kt	languages
 4	json	core/src/main/java/tv/own/owntv/core/sports/SportsConfig.kt	leagues
 2	json	core/src/main/java/tv/own/owntv/core/sports/SportsConfig.kt	liveRefreshSeconds
@@ -4303,8 +4324,8 @@
 2	json	core/src/main/java/tv/own/owntv/core/sports/SportsMemory.kt	\0
 1	json	core/src/main/java/tv/own/owntv/core/sports/SportsMemory.kt	cricket/
 1	json	core/src/main/java/tv/own/owntv/core/sports/SportsMemory.kt	cricket/all
+1	locale	core/src/main/java/tv/own/owntv/core/sports/SportsRefreshPolicy.kt	America/New_York
 1	file-path	core/src/main/java/tv/own/owntv/core/sports/SportsRepository.kt	$CACHE_FILE.tmp
-1	technical	core/src/main/java/tv/own/owntv/core/sports/SportsRepository.kt	America/New_York
 1	log	core/src/main/java/tv/own/owntv/core/sports/SportsRepository.kt	OwnTV-Sports
 1	file-path	core/src/main/java/tv/own/owntv/core/sports/SportsRepository.kt	board.json
 1	log	core/src/main/java/tv/own/owntv/core/sports/SportsRepository.kt	cache write failed: ${it.javaClass.simpleName}
@@ -4317,22 +4338,25 @@
 1	technical	core/src/main/java/tv/own/owntv/core/sports/SportsRepository.kt	tennis/wta
 1	empty	core/src/main/java/tv/own/owntv/core/sports/SportsSource.kt	\0
 1	url	core/src/main/java/tv/own/owntv/core/sports/SportsSource.kt	$SITE/apis/site/v2/sports/${league.sport.path}/$slug/teams/$teamId/schedule
-1	url	core/src/main/java/tv/own/owntv/core/sports/SportsSource.kt	$SITE/apis/site/v2/sports/${league.sport.path}/${league.slug}/scoreboard
+1	url	core/src/main/java/tv/own/owntv/core/sports/SportsSource.kt	$SITE/apis/site/v2/sports/${league.sport.path}/${league.slug}/scoreboard?
 1	url	core/src/main/java/tv/own/owntv/core/sports/SportsSource.kt	$SITE/apis/site/v2/sports/${league.sport.path}/${league.slug}/scoreboard?dates=${month.format(MONTH)}&limit=$MONTH_LIMIT
-1	url	core/src/main/java/tv/own/owntv/core/sports/SportsSource.kt	$SITE/apis/site/v2/sports/${league.sport.path}/${league.slug}/teams
+1	url	core/src/main/java/tv/own/owntv/core/sports/SportsSource.kt	$SITE/apis/site/v2/sports/${league.sport.path}/${league.slug}/teams?limit=$MONTH_LIMIT
 1	url	core/src/main/java/tv/own/owntv/core/sports/SportsSource.kt	$SITE/apis/site/v2/sports/${match.sport.path}/${match.leagueSlug}/summary?event=${match.id}
 1	url	core/src/main/java/tv/own/owntv/core/sports/SportsSource.kt	$SITE/apis/site/v2/sports/tennis/${league.slug}/rankings
 1	url	core/src/main/java/tv/own/owntv/core/sports/SportsSource.kt	$SITE/apis/v2/sports/${league.sport.path}/${league.slug}/standings
 1	url	core/src/main/java/tv/own/owntv/core/sports/SportsSource.kt	$SITE/apis/v2/sports/racing/${league.slug}/standings
 1	url	core/src/main/java/tv/own/owntv/core/sports/SportsSource.kt	$WEB/apis/v2/scoreboard/header?sport=cricket
+1	url	core/src/main/java/tv/own/owntv/core/sports/SportsSource.kt	&
 1	url	core/src/main/java/tv/own/owntv/core/sports/SportsSource.kt	&dates=$it
-1	url	core/src/main/java/tv/own/owntv/core/sports/SportsSource.kt	?dates=$it
 1	technical	core/src/main/java/tv/own/owntv/core/sports/SportsSource.kt	?fixture=true
 1	technical	core/src/main/java/tv/own/owntv/core/sports/SportsSource.kt	HTTP $code
 1	technical	core/src/main/java/tv/own/owntv/core/sports/SportsSource.kt	all
 1	assertion	core/src/main/java/tv/own/owntv/core/sports/SportsSource.kt	cricket has no month feed
+1	url	core/src/main/java/tv/own/owntv/core/sports/SportsSource.kt	dates=$it
+1	url	core/src/main/java/tv/own/owntv/core/sports/SportsSource.kt	groups=$it
 1	url	core/src/main/java/tv/own/owntv/core/sports/SportsSource.kt	https://site.api.espn.com
 1	url	core/src/main/java/tv/own/owntv/core/sports/SportsSource.kt	https://site.web.api.espn.com
+1	url	core/src/main/java/tv/own/owntv/core/sports/SportsSource.kt	limit=$MONTH_LIMIT
 1	technical	core/src/main/java/tv/own/owntv/core/sports/SportsSource.kt	no ranking
 1	technical	core/src/main/java/tv/own/owntv/core/sports/SportsSource.kt	yyyyMM
 1	technical	core/src/main/java/tv/own/owntv/core/sports/TeamNames.kt	\0
@@ -4537,6 +4561,7 @@
 1	technical	core/src/main/java/tv/own/owntv/core/sports/WatchReader.kt	|
 1	empty	core/src/main/java/tv/own/owntv/core/sports/model/Match.kt	\0
 1	protocol	core/src/main/java/tv/own/owntv/core/sports/model/Match.kt	${League.keyOf(sport, leagueSlug)}#$id
+2	empty	core/src/main/java/tv/own/owntv/core/sports/model/MatchSummary.kt	\0
 1	technical	core/src/main/java/tv/own/owntv/core/sports/model/MatchSummary.kt	FP1
 1	technical	core/src/main/java/tv/own/owntv/core/sports/model/MatchSummary.kt	FP2
 1	technical	core/src/main/java/tv/own/owntv/core/sports/model/MatchSummary.kt	FP3
@@ -6391,12 +6416,14 @@
 1	technical	player-core/src/main/java/tv/own/owntv/player/MpvLoadCommand.kt	absolute
 1	technical	player-core/src/main/java/tv/own/owntv/player/MpvLoadCommand.kt	none
 1	technical	player-core/src/main/java/tv/own/owntv/player/MpvLoadCommand.kt	seek
-1	empty	player-core/src/main/java/tv/own/owntv/player/MpvLoadOptions.kt	\0
+2	empty	player-core/src/main/java/tv/own/owntv/player/MpvLoadOptions.kt	\0
 1	protocol	player-core/src/main/java/tv/own/owntv/player/MpvLoadOptions.kt	.m3u8
 1	protocol	player-core/src/main/java/tv/own/owntv/player/MpvLoadOptions.kt	/timeshift/
 1	technical	player-core/src/main/java/tv/own/owntv/player/MpvLoadOptions.kt	0
 1	technical	player-core/src/main/java/tv/own/owntv/player/MpvLoadOptions.kt	1.0
 1	technical	player-core/src/main/java/tv/own/owntv/player/MpvLoadOptions.kt	1000000
+1	protocol	player-core/src/main/java/tv/own/owntv/player/MpvLoadOptions.kt	20
+1	protocol	player-core/src/main/java/tv/own/owntv/player/MpvLoadOptions.kt	30000000
 1	technical	player-core/src/main/java/tv/own/owntv/player/MpvLoadOptions.kt	5000000
 1	technical	player-core/src/main/java/tv/own/owntv/player/MpvLoadOptions.kt	audio
 2	technical	player-core/src/main/java/tv/own/owntv/player/MpvLoadOptions.kt	cache-pause-initial
@@ -6404,9 +6431,10 @@
 1	technical	player-core/src/main/java/tv/own/owntv/player/MpvLoadOptions.kt	cache-secs
 1	technical	player-core/src/main/java/tv/own/owntv/player/MpvLoadOptions.kt	correct-pts
 1	technical	player-core/src/main/java/tv/own/owntv/player/MpvLoadOptions.kt	decoder+vo
-2	technical	player-core/src/main/java/tv/own/owntv/player/MpvLoadOptions.kt	demuxer-lavf-analyzeduration
+3	protocol	player-core/src/main/java/tv/own/owntv/player/MpvLoadOptions.kt	demuxer-lavf-analyzeduration
+1	protocol	player-core/src/main/java/tv/own/owntv/player/MpvLoadOptions.kt	demuxer-lavf-format
 1	technical	player-core/src/main/java/tv/own/owntv/player/MpvLoadOptions.kt	demuxer-lavf-o
-2	technical	player-core/src/main/java/tv/own/owntv/player/MpvLoadOptions.kt	demuxer-lavf-probesize
+3	protocol	player-core/src/main/java/tv/own/owntv/player/MpvLoadOptions.kt	demuxer-lavf-probesize
 1	technical	player-core/src/main/java/tv/own/owntv/player/MpvLoadOptions.kt	demuxer-max-bytes
 1	technical	player-core/src/main/java/tv/own/owntv/player/MpvLoadOptions.kt	demuxer-readahead-secs
 1	log	player-core/src/main/java/tv/own/owntv/player/MpvLoadOptions.kt	demuxerLavfO="$demuxerOptions" streamLavfO="$streamLavfO"
@@ -6415,6 +6443,7 @@
 1	log	player-core/src/main/java/tv/own/owntv/player/MpvLoadOptions.kt	film_buffer buffer=${filmBuffer}s cache=$demuxerMax net=${networkTimeout}s
 1	technical	player-core/src/main/java/tv/own/owntv/player/MpvLoadOptions.kt	framedrop
 1	technical	player-core/src/main/java/tv/own/owntv/player/MpvLoadOptions.kt	full
+1	protocol	player-core/src/main/java/tv/own/owntv/player/MpvLoadOptions.kt	hls
 1	log	player-core/src/main/java/tv/own/owntv/player/MpvLoadOptions.kt	live_buffer preroll=${i.prerollSecs}s readahead=${live.readahead} cache=${live.cache} latency=${i.liveBufferSecs ?: -1} net=${networkTimeout}s
 1	log	player-core/src/main/java/tv/own/owntv/player/MpvLoadOptions.kt	mpv_open hls=$effectiveHls live=${i.live} probe=${if (trim) "trimmed" else "full"} tolerant=${i.tolerant}
 1	technical	player-core/src/main/java/tv/own/owntv/player/MpvLoadOptions.kt	network-timeout
@@ -6449,6 +6478,7 @@
 1	technical	player-core/src/main/java/tv/own/owntv/player/OwnTVPlayer.kt	+nobuffer+genpts+discardcorrupt
 1	technical	player-core/src/main/java/tv/own/owntv/player/OwnTVPlayer.kt	,
 1	log	player-core/src/main/java/tv/own/owntv/player/OwnTVPlayer.kt	-
+1	protocol	player-core/src/main/java/tv/own/owntv/player/OwnTVPlayer.kt	.m3u8
 1	technical	player-core/src/main/java/tv/own/owntv/player/OwnTVPlayer.kt	.ts
 1	technical	player-core/src/main/java/tv/own/owntv/player/OwnTVPlayer.kt	/sdk_
 3	technical	player-core/src/main/java/tv/own/owntv/player/OwnTVPlayer.kt	0
@@ -6551,6 +6581,7 @@
 2	technical	player-core/src/main/java/tv/own/owntv/player/OwnTVPlayer.kt	cache-secs
 1	log	player-core/src/main/java/tv/own/owntv/player/OwnTVPlayer.kt	cache=${getPropertyString("demuxer-cache-duration")}s
 1	log	player-core/src/main/java/tv/own/owntv/player/OwnTVPlayer.kt	cache=${m.getPropertyString("demuxer-cache-duration")}s
+1	log	player-core/src/main/java/tv/own/owntv/player/OwnTVPlayer.kt	catch-up as HLS refused — asking for MPEG-TS
 1	log	player-core/src/main/java/tv/own/owntv/player/OwnTVPlayer.kt	catch-up path URL rejected — trying timeshift.php fallback
 1	technical	player-core/src/main/java/tv/own/owntv/player/OwnTVPlayer.kt	clip
 7	protocol	player-core/src/main/java/tv/own/owntv/player/OwnTVPlayer.kt	container-fps
@@ -6667,7 +6698,7 @@
 1	log	player-core/src/main/java/tv/own/owntv/player/OwnTVPlayer.kt	lowSpec=${budget.lowSpec} direct=${useDirect()} hwdec=${getPropertyString("hwdec")}
 1	technical	player-core/src/main/java/tv/own/owntv/player/OwnTVPlayer.kt	manual engine toggle
 1	log	player-core/src/main/java/tv/own/owntv/player/OwnTVPlayer.kt	measured fps: est-vf-fps=$current -> ${snapped}fps (no container-fps)
-3	technical	player-core/src/main/java/tv/own/owntv/player/OwnTVPlayer.kt	mediacodec
+2	technical	player-core/src/main/java/tv/own/owntv/player/OwnTVPlayer.kt	mediacodec
 1	technical	player-core/src/main/java/tv/own/owntv/player/OwnTVPlayer.kt	mediacodec-copy
 4	technical	player-core/src/main/java/tv/own/owntv/player/OwnTVPlayer.kt	mediacodec_embed
 1	technical	player-core/src/main/java/tv/own/owntv/player/OwnTVPlayer.kt	mediacodec|omx\\.|c2\\.|hwdec|hardware decod|could not open codec|decoder|0x8000|0xfffffff
@@ -6707,7 +6738,7 @@
 2	technical	player-core/src/main/java/tv/own/owntv/player/OwnTVPlayer.kt	mute
 1	log	player-core/src/main/java/tv/own/owntv/player/OwnTVPlayer.kt	network back — reconnecting the live channel parked on ${_error.value}
 1	technical	player-core/src/main/java/tv/own/owntv/player/OwnTVPlayer.kt	network-timeout
-25	technical	player-core/src/main/java/tv/own/owntv/player/OwnTVPlayer.kt	no
+24	technical	player-core/src/main/java/tv/own/owntv/player/OwnTVPlayer.kt	no
 1	technical	player-core/src/main/java/tv/own/owntv/player/OwnTVPlayer.kt	no-video (mpv, Live) — audio progressing but no video frame after ~${elapsedMs}ms
 1	log	player-core/src/main/java/tv/own/owntv/player/OwnTVPlayer.kt	no-video (mpv, Live) — reconnect attempt ${item.liveStallReconnects}/$MAX_LIVE_RECONNECTS
 1	log	player-core/src/main/java/tv/own/owntv/player/OwnTVPlayer.kt	no-video (mpv, Live) — reconnect budget exhausted, surfacing error
@@ -6843,6 +6874,7 @@
 1	log	player-core/src/main/java/tv/own/owntv/player/OwnTVPlayer.kt	watchdog T_DECODE — FILE_LOADED but no frame after ${elapsed}ms, HARD-RESETTING mpv
 1	log	player-core/src/main/java/tv/own/owntv/player/OwnTVPlayer.kt	watchdog T_DECODE — archive produced no frame after ${elapsed}ms
 1	log	player-core/src/main/java/tv/own/owntv/player/OwnTVPlayer.kt	watchdog T_OPEN — archive never opened on mpv after ${elapsed}ms, handing to ExoPlayer
+1	log	player-core/src/main/java/tv/own/owntv/player/OwnTVPlayer.kt	watchdog T_OPEN — catch-up as HLS did not open in ${elapsed}ms, asking for MPEG-TS
 1	log	player-core/src/main/java/tv/own/owntv/player/OwnTVPlayer.kt	watchdog T_OPEN — no FILE_LOADED after ${elapsed}ms, HARD-RESETTING mpv
 1	log	player-core/src/main/java/tv/own/owntv/player/OwnTVPlayer.kt	watchdog T_OPEN — no FILE_LOADED after ${elapsed}ms, silent hard-reset + retry
 1	log	player-core/src/main/java/tv/own/owntv/player/OwnTVPlayer.kt	watchdog — archive froze twice on mpv, handing to ExoPlayer

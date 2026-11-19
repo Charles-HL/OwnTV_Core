@@ -133,6 +133,50 @@ class MpvEngineTest {
     }
 
     @Test
+    fun aCatchUpAfterAHardResetStillDecodesInHardware() {
+        h.player.play(C1, isArchive = true)
+        h.settle()
+        assertEquals("an archive opens on the copy path", "mediacodec-copy", h.core.props["hwdec"])
+        // A dead programme (HTTP 404): END_FILE before FILE_LOADED, and mpv is rebuilt.
+        h.core.endFile(MpvEndFileReason.ERROR, -13)
+        h.settle()
+        // The next programme picked inside the reset, as from the catch-up list.
+        h.player.play(C2, isArchive = true)
+        h.advance(OwnTVPlayer.CORE_RESET_SETTLE_MS + 100)
+        h.recreateSurface()
+        assertEquals(listOf(C2), h.core.loads)
+        assertEquals("the rebuilt core keeps the hardware decoder", "mediacodec-copy", h.core.props["hwdec"])
+    }
+
+    @Test
+    fun aCatchUpAskedForAsHlsThatWillNotOpenGoesBackToTs() {
+        h.player.play(H1, isArchive = true)
+        h.settle()
+        assertEquals(listOf(H1), h.core.loads)
+        // The timeshift server has no HLS for this programme: END_FILE before FILE_LOADED.
+        val first = h.core
+        h.core.endFile(MpvEndFileReason.ERROR, -13)
+        h.advance(OwnTVPlayer.FALLBACK_RETRY_DELAY_MS + 100)
+        assertFalse("mpv answered, so it is not rebuilt", first.destroyed)
+        assertEquals("the same programme as .ts", listOf(H1, H1.removeSuffix(".m3u8") + ".ts"), h.core.loads)
+    }
+
+    @Test
+    fun aCatchUpAsHlsIsGivenTimeToOpenThenAskedForAsTs() {
+        h.player.play(H1, isArchive = true)
+        h.settle()
+        // The timeshift server is still building a long programme's playlist: no FILE_LOADED, no END_FILE.
+        h.advance(22_000)
+        val cores = h.cores.size
+        assertEquals("past the usual ten seconds, still waiting on the playlist", listOf(H1), h.core.loads)
+        assertEquals("and mpv was not rebuilt meanwhile", cores, h.cores.size)
+        h.advance(FilmWatchdog.ARCHIVE_HLS_OPEN_TIMEOUT_MS - 22_000 + 2_000)
+        h.advance(OwnTVPlayer.CORE_RESET_SETTLE_MS + 100)
+        h.recreateSurface()
+        assertEquals("a fresh core asks for the programme as .ts", listOf(H1.removeSuffix(".m3u8") + ".ts"), h.core.loads)
+    }
+
+    @Test
     fun filmMpvCanOnlySoftwareDecodeIn4kIsStoppedAndHandedToExoPlayer() {
         h.playFilm(F1)
         h.opened(positionSecs = 0)
@@ -153,5 +197,8 @@ class MpvEngineTest {
         const val B = "http://panel.test/live/u/p/2.ts"
         const val F1 = "http://panel.test/movie/u/p/10.mkv"
         const val F2 = "http://panel.test/movie/u/p/11.mkv"
+        const val C1 = "http://panel.test/timeshift/u/p/30/2026-11-19:09-30/1.ts"
+        const val C2 = "http://panel.test/timeshift/u/p/75/2026-11-19:10-30/2.ts"
+        const val H1 = "http://panel.test/timeshift/u/p/30/2026-11-19:09-30/1.m3u8"
     }
 }

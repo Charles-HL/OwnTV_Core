@@ -239,6 +239,8 @@
     <string name="setup_prefer_hls_description">Надавати пріоритет HLS (.m3u8) над MPEG-TS для ТБ наживо. Якщо HLS не працює, буде використано MPEG-TS. Архів завжди використовує MPEG-TS.</string>
     <string name="setup_prefer_hls_description_supported">Надавати пріоритет HLS (.m3u8) над MPEG-TS для ТБ наживо. Якщо HLS не працює, буде використано MPEG-TS. Архів завжди використовує MPEG-TS. Ваш провайдер повідомляє про підтримку HLS.</string>
     <string name="setup_prefer_hls_description_unsupported">Надавати пріоритет HLS (.m3u8) над MPEG-TS для ТБ наживо. Якщо HLS не працює, буде використано MPEG-TS. Архів завжди використовує MPEG-TS. Ваш провайдер не повідомляє про підтримку HLS — але ви все одно можете спробувати.</string>
+    <string name="setup_prefer_hls_catchup">Надавати перевагу HLS для архіву</string>
+    <string name="setup_prefer_hls_catchup_description">Запитувати передачі з архіву як HLS (.m3u8) замість MPEG-TS. Якщо HLS не працює, буде використано MPEG-TS. Архів у HLS пропонують лише деякі провайдери.</string>
     <string name="setup_hls_test_support">Перевірити підтримку HLS</string>
     <string name="setup_hls_testing">Перевірка HLS…</string>
     <string name="setup_hls_test_failed">Перевірка не вдалася: <xliff:g id="reason">%1$s</xliff:g></string>

@@ -11,7 +11,7 @@
 
 ## core-1.0.72 — unreleased
 
-**Database v54**
+**Database v55 · Backup v27**
 
 ### ✨ New features
 
@@ -19,9 +19,21 @@
 - **🗂️ Favorites and History show their sort as "Newest first" in both apps** (rebuilt from community PR #85 by @Quad-Plex)
 - **🔒 Phone player: screen lock strings in every language**
 - **🌍 Central Kurdish added to the translation catalogue (#82)**
+- **🌍 Ukrainian and Central Kurdish ship in both apps (#90, #91)**
+- **📼 "Prefer HLS for catch-up", per playlist**
+- **🎓 Sports: every college team and game, and team search across all leagues of a sport**
+- **📊 Sports: standings columns that fit each sport**
 
 ### 🐛 Fixes
 
+- **📼 Catch-up: no more frame drops after a programme that failed to open**
+- **📼 Catch-up: HEVC programmes decode in hardware**
+- **🏒 Sports: "Starting soon" shows today's games, not yesterday's, after midnight**
+- **🏈 Sports: NFL, NBA, NHL, MLB and college team pages list their games again**
+- **🏈 Sports: college tables show each team's real record**
+- **🏈 Sports: a followed college team opens its own league, not the NFL**
+- **📊 Sports: a team page's table no longer disappears after a refresh**
+- **🌍 Central Kurdish: the rest of the app translated**
 - **⏪ Timeshift: leaving a channel while it is still opening no longer leaves its download running**
 - **⏱️ Timeshift: "Give up after" now counts the wait for the saved copy**
 - **▶️ Timeshift: "Resume" on a channel you came back to no longer freezes after half a minute**

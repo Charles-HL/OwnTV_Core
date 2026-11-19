@@ -202,6 +202,7 @@
     <string name="recording_group_completed">تۆمارکراو</string>
     <string name="recording_group_failed">سەرکەوتوو نەبوو</string>
     <string name="recording_group_missed">لەدەستچوو</string>
+    <string name="recording_group_series">هەموو پیشاندانێک</string>
     <string name="recording_record">تۆمار بکە</string>
     <string name="recording_stop">تۆمارکردن بوەستێنە</string>
     <string name="recording_delete_message">تۆمارەکە و فایلەکەی لەم ئامێرە دەسڕێتەوە. ئەمە ناگەڕێتەوە.</string>
@@ -338,6 +339,7 @@
     <string name="sports_tab_stats">ئامار</string>
     <string name="sports_tab_lineups">پێکهاتە-کان</string>
     <string name="sports_tab_table">خشتە</string>
+    <string name="sports_tab_standings">ڕیزبەندی</string>
     <string name="sports_following">بەدواداچوون</string>
     <string name="sports_follow">بەدوادا بچۆ</string>
     <string name="sports_event_goal">گۆڵ · <xliff:g id="player">%1$s</xliff:g></string>
@@ -401,6 +403,7 @@
     <string name="sports_playing_now">ئێستا پەخش دەکرێت</string>
     <string name="sports_switch_channel">گۆڕینی کەناڵ</string>
     <string name="sports_tab_fixtures">خشتەی یارییەکان</string>
+    <string name="sports_tab_games">یارییەکان</string>
     <string name="sports_tab_results">ئەنجامەکان</string>
     <string name="sports_tab_scores">ئەنجامی یارییەکان</string>
     <string name="sports_tab_calendar">ڕۆژژمێر</string>
@@ -447,6 +450,10 @@
     <string name="sports_table_lost">د</string>
     <string name="sports_table_difference">جد</string>
     <string name="sports_table_points">خاڵ</string>
+    <string name="sports_table_tied">ی</string>
+    <string name="sports_table_ot_losses">دز</string>
+    <string name="sports_table_win_percent">ڕێژە</string>
+    <string name="sports_table_games_behind">دوا</string>
     <string name="sports_table_form">دۆخی ئەم دواییە</string>
     <string name="sports_this_matchday">ئەم گەڕەی یارییەکان</string>
     <string name="sports_settings_what">چی پیشان بدرێت</string>
