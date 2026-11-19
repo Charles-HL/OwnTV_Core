@@ -1166,7 +1166,7 @@
     <string name="settings_guide_width_channels">Список каналів</string>
     <string name="settings_search_keywords_epg_offset">epg програма передач зсув часу часовий пояс схід захід години</string>
     <string name="settings_search_keywords_panel_width">панель ширина розмір зміна категорія список перегляд постер стовпець макет наживо фільми серіали</string>
-    <string name="settings_search_keywords_live_preroll">попередня буферизація буферизація перед відтворенням повторна буферизація гальмування зависання для плейлиста</string>
+    <string name="settings_search_keywords_live_preroll">попередня буферизація перед відтворенням повторне підвантаження гальмування зависання для плейлиста</string>
     <string name="settings_detailed_playback_logging">Докладний журнал відтворення</string>
     <string name="settings_search_keywords_detailed_logging">діагностика докладний трасування logcat налагодження звіт помилка наживо рушій</string>
     <string name="settings_playback_kind_error">Помилка</string>
