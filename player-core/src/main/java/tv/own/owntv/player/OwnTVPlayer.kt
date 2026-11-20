@@ -537,6 +537,7 @@ class OwnTVPlayer(
         const val FROZEN_START_MS = 8_000L         // "playing" with the clock stuck where the picture opened
         const val FROZEN_START_PROOF_MS = 2_000L   // this much progress past the first frame proves playback
         const val ARCHIVE_STALL_MS = 10_000L       // an archive "playing" with its clock stuck this long has stalled
+        const val ARCHIVE_DROP_WINDOW_MS = 20_000L // steady catch-up playback a frame-drop rate is measured over
         // The Exo position emit (500ms) and the fps-chip recheck (1,500ms) used to live here. Both now
         // ride [PlayerHeartbeat]'s shared 1 Hz beat, so neither has an interval of its own any more.
         const val EXO_SUB_DELAY_DEBOUNCE_MS = 350L // settle time before a timing change re-prepares on Exo
@@ -2077,8 +2078,24 @@ class OwnTVPlayer(
     private suspend fun watchArchiveStall(gen: Int) {
         var lastPos = _position.value
         var stillSince = 0L
+        var dropsAtStart: Long? = null
+        var dropsSince = 0L
         while (gen == loadGeneration) {
             delay(1000)
+            // Frames lost, counted over steady playback only: a pause or a refill starts the window again.
+            val tickAt = android.os.SystemClock.elapsedRealtime()
+            if (!_isPlaying.value || _buffering.value) {
+                dropsAtStart = null
+            } else if (dropsAtStart == null) {
+                dropsAtStart = readFrameDrops()
+                dropsSince = tickAt
+            } else if (tickAt - dropsSince >= ARCHIVE_DROP_WINDOW_MS) {
+                val drops = readFrameDrops()
+                if (gen != loadGeneration) return
+                if (drops != null && rescueArchiveDrops(drops - dropsAtStart, tickAt - dropsSince)) return
+                dropsAtStart = drops
+                dropsSince = tickAt
+            }
             val pos = _position.value
             if (pos != lastPos || !_isPlaying.value) {
                 lastPos = pos
@@ -2092,6 +2109,44 @@ class OwnTVPlayer(
                 _archiveStalled.tryEmit(Unit)
                 return
             }
+        }
+    }
+
+    /** Frames mpv has dropped so far on this load, by the output and by the decoder. */
+    private suspend fun readFrameDrops(): Long? = readOnMpv { m ->
+        (m.getPropertyInt("frame-drop-count") ?: 0).toLong() + (m.getPropertyInt("decoder-frame-drop-count") ?: 0)
+    }
+
+    /**
+     * A catch-up that plays but keeps losing frames ([ArchiveDropCheck]). On the copy path the GPU copy is
+     * too slow for this device, so the programme reopens once on the direct hardware path, from its start
+     * (archives have no Range support); the frozen-first-frame watchdog still guards that path. In software
+     * it goes to ExoPlayer, which decodes in hardware. Returns true when playback was moved.
+     */
+    private suspend fun rescueArchiveDrops(dropped: Long, windowMs: Long): Boolean {
+        val (hwdec, fps) = readOnMpv { m -> m.getPropertyString("hwdec-current") to m.getPropertyDouble("container-fps") }
+            ?: return false
+        if (!ArchiveDropCheck.tooMany(dropped, fps ?: Double.NaN, windowMs)) return false
+        val url = currentUrl ?: return false
+        val detail = "catch-up dropped $dropped frames in ${windowMs / 1000}s at ${fps}fps on hwdec='$hwdec'"
+        return when (ArchiveDropCheck.action(hwdec, item.triedDirectAfterDrops)) {
+            ArchiveDropCheck.Action.DIRECT -> {
+                item.triedDirectAfterDrops = true
+                item.forceCopyThisLoad = false
+                android.util.Log.w(TAG, "$detail — reopening on the direct hardware path")
+                LiveDiagnosticsLog.event("$detail — reopening on the direct hardware path")
+                reloadAfterRescue(url, 0L)
+                true
+            }
+            ArchiveDropCheck.Action.EXOPLAYER ->
+                fallbackToExoVod(PlaybackFailure.MpvOpenDecode, mpvStuck = false).also { handed ->
+                    // Only when it happened: an mpv-only engine setting refuses the handover.
+                    if (handed) {
+                        android.util.Log.w(TAG, "$detail — handing to ExoPlayer")
+                        LiveDiagnosticsLog.event("$detail — handing to ExoPlayer")
+                    }
+                }
+            ArchiveDropCheck.Action.NONE -> false
         }
     }
 
@@ -5150,6 +5205,9 @@ class OwnTVPlayer(
         when (property) {
             "hwdec-current" -> {
                 android.util.Log.i(TAG, "hwdec-current='$value' (height=${load.currentHeightPx}px, setting=${if (hwDecoding) "on" else "off"})")
+                // Into the exported report too: a frame-drop report said how many frames went, never whether
+                // the picture was decoded in hardware, copied through the GPU, or in software.
+                LiveDiagnosticsLog.event("mpv decoder: hwdec-current='$value'")
                 load.currentHwdec = value
                 enforceDecodeGuard()
             }
@@ -5485,6 +5543,14 @@ class OwnTVPlayer(
                 val hw = getPropertyString("hwdec-current") ?: ""
                 val h = getPropertyInt("height") ?: 0
                 android.util.Log.i(TAG, "decode check: hwdec-current='$hw' height=${h}px direct=${_directRender.value}")
+                val codec = getPropertyString("video-codec")
+                val w = getPropertyInt("width") ?: 0
+                val fps = getPropertyString("container-fps")
+                val vo = getPropertyString("vo")
+                LiveDiagnosticsLog.event(
+                    "mpv decode check: hwdec-current='$hw' codec=$codec size=${w}x$h fps=$fps vo=$vo " +
+                        "direct=${_directRender.value} archive=${item.archiveThisItem}",
+                )
                 // Diagnostics for "video plays like a slideshow": is mpv dropping frames (timing),
                 // is the decoder dropping (too slow), or is the network cache underrunning?
                 android.util.Log.i(
@@ -6031,6 +6097,8 @@ internal data class ItemState(
      *  for the 4K file the direct path cannot open at all. */
     @field:Volatile var forceCopyThisLoad: Boolean = false,
     @field:Volatile var triedCopyRescue: Boolean = false,
+    /** A catch-up that dropped too many frames on the copy path was moved to the direct path: once only. */
+    @field:Volatile var triedDirectAfterDrops: Boolean = false,
     /** CEA-608/708 CC text is decoder side data the hardware decoder never surfaces, so the synthetic CC
      *  track stays empty under hwdec. While a CC track is selected we decode in software. */
     @field:Volatile var ccSoftwareOverride: Boolean = false,

@@ -28,6 +28,8 @@
 
 - **📼 Catch-up: no more frame drops after a programme that failed to open**
 - **📼 Catch-up: HEVC programmes decode in hardware**
+- **📼 Catch-up: a programme that keeps dropping frames switches to a faster decoding path by itself**
+- **🧾 Playback report: says which decoder mpv used**
 - **🏒 Sports: "Starting soon" shows today's games, not yesterday's, after midnight**
 - **🏈 Sports: NFL, NBA, NHL, MLB and college team pages list their games again**
 - **🏈 Sports: college tables show each team's real record**
