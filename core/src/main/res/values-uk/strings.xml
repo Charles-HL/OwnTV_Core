@@ -209,4 +209,8 @@
     <string name="shell_now_playing_audio">Аудіо</string>
     <string name="common_weather_degrees_city"><xliff:g id="temperature">%1$d</xliff:g>° <xliff:g id="city">%2$s</xliff:g></string>
     <string name="common_dismiss">Закрити</string>
+    <string name="database_migration_title">Виконується міграція бази даних</string>
+    <string name="database_migration_body">Ця версія зберігає ваші канали, фільми та серіали в новому форматі бази даних. Це відбувається лише один раз і для великих плейлистів може тривати до 2 хвилин.</string>
+    <string name="database_migration_keep">Ваші плейлисти, обране та історія зберігаються. Нічого не завантажується повторно. Не вимикайте телевізор і не закривайте застосунок.</string>
+    <string name="database_migration_keep_mobile">Ваші плейлисти, обране та історія зберігаються. Нічого не завантажується повторно. Не закривайте застосунок.</string>
 </resources>

@@ -59,6 +59,13 @@
     <string name="player_adjust">ڕێکخستن</string>
     <string name="player_search_subtitles">گەڕان لە OpenSubtitles</string>
     <string name="player_select_local_subtitle">هەڵبژاردنی فایلی ژێرنووسی ناوخۆیی</string>
+    <string name="player_subtitle_find_in_folder">گەڕان لە بوخچە</string>
+    <string name="player_subtitle_folder_title">ژێرنووسەکانی بوخچە</string>
+    <string name="player_subtitle_folder_choose">هەڵبژاردنی بوخچەی ژێرنووس</string>
+    <string name="player_subtitle_folder_change">گۆڕینی بوخچە</string>
+    <string name="player_subtitle_folder_empty">هیچ فایلێکی ژێرنووس لەم بوخچەیەدا نییە</string>
+    <string name="player_subtitle_folder_auto">بارکردنی خۆکاری ژێرنووسی گونجاو</string>
+    <string name="player_subtitle_folder_auto_description">فیلم یان ئەڵقەیەک کە ژێرنووسی خۆی نییە، ئەو تاکە فایلەی ئێرە وەردەگرێت کە لەگەڵ ناوەکەی دەگونجێت. ئەگەر زیاتر لە یەک فایل گونجا، هیچیان بار ناکرێت.</string>
     <string name="player_no_tracks">هیچ تراکێک بەردەست نییە.</string>
     <string name="player_image_track"><xliff:g id="label">%1$s</xliff:g> · وێنە</string>
     <string name="player_av_sync">هاوکاتکردنی A/V</string>

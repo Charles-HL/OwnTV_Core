@@ -59,6 +59,13 @@
     <string name="player_adjust">КОРИГУВАННЯ</string>
     <string name="player_search_subtitles">Шукати в OpenSubtitles</string>
     <string name="player_select_local_subtitle">Вибрати локальний файл субтитрів</string>
+    <string name="player_subtitle_find_in_folder">Знайти в папці</string>
+    <string name="player_subtitle_folder_title">Субтитри в папці</string>
+    <string name="player_subtitle_folder_choose">Вибрати папку із субтитрами</string>
+    <string name="player_subtitle_folder_change">Змінити папку</string>
+    <string name="player_subtitle_folder_empty">У цій папці немає файлів субтитрів</string>
+    <string name="player_subtitle_folder_auto">Автоматично завантажувати відповідні субтитри</string>
+    <string name="player_subtitle_folder_auto_description">Фільм чи серія без власних субтитрів отримує єдиний файл звідси, що збігається з назвою. Якщо збігаються кілька, жоден не завантажується.</string>
     <string name="player_no_tracks">Доріжок немає.</string>
     <string name="player_image_track"><xliff:g id="label">%1$s</xliff:g> · зображення</string>
     <string name="player_av_sync">Синхронізація аудіо/відео</string>

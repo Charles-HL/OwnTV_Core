@@ -179,4 +179,8 @@
     <string name="shell_now_playing_audio">دەنگ</string>
     <string name="common_weather_degrees_city"><xliff:g id="temperature">%1$d</xliff:g>° <xliff:g id="city">%2$s</xliff:g></string>
     <string name="common_dismiss">داخستن</string>
+    <string name="database_migration_title">گواستنەوەی بنکەدراوە ئەنجام دەدرێت</string>
+    <string name="database_migration_body">ئەم وەشانە کەناڵ و فیلم و زنجیرەکانت بە شێوازێکی نوێی بنکەدراوە هەڵدەگرێت. ئەمە تەنها یەکجار ڕوودەدات و لە لیستە گەورەکاندا لەوانەیە تا ٢ خولەک بخایەنێت.</string>
+    <string name="database_migration_keep">لیستەکان و دڵخوازەکان و مێژووەکەت دەمێننەوە. هیچ شتێک دووبارە دانابەزێنرێتەوە. تکایە تەلەفزیۆنەکە مەکوژێنەرەوە و ئەپەکە دامەخە.</string>
+    <string name="database_migration_keep_mobile">لیستەکان و دڵخوازەکان و مێژووەکەت دەمێننەوە. هیچ شتێک دووبارە دانابەزێنرێتەوە. تکایە ئەپەکە کراوە بهێڵەرەوە.</string>
 </resources>

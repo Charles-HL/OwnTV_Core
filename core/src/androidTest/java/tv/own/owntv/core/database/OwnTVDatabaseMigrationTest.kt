@@ -719,6 +719,66 @@ class OwnTVDatabaseMigrationTest {
         }
     }
 
+    /**
+     * v55 → v56 fills `nameKey` with the Unicode lowercase name, moves the A–Z indexes onto it and puts
+     * the three name FTS tables on `unicode61`, so a lowercase Cyrillic query finds a capitalised name.
+     */
+    @Test
+    fun migrateVersion55To56_fillsNameKeys_andSearchFoldsEveryAlphabet() {
+        seedNamedContent(55)
+        assertNameKeysAfterUpgrade()
+    }
+
+    /** The same upgrade from v54, the schema the last published core shipped. */
+    @Test
+    fun migrateVersion54To56_fillsNameKeys_andSearchFoldsEveryAlphabet() {
+        seedNamedContent(54)
+        assertNameKeysAfterUpgrade()
+    }
+
+    private fun seedNamedContent(version: Int) {
+        context.deleteDatabase(DB_NAME)
+        val old = context.openOrCreateDatabase(DB_NAME, Context.MODE_PRIVATE, null)
+        try {
+            executeSchemaQueries(old, "tv.own.owntv.core.database.OwnTVDatabase/$version.json")
+            old.execSQL(
+                "INSERT INTO sources (id, name, type, url, syncLive, syncMovies, syncSeries, hlsSupported, preferHls, " +
+                    "livePrerollSecs, liveLatencyCustomSecs, maxConnections, maxConnectionsProbedAt, createdAt) " +
+                    "VALUES (1, 'Panel', 'XTREAM', 'http://panel.test', 1, 1, 1, 0, 0, -1, -1, 0, 0, 1)",
+            )
+            val channel = "INSERT INTO channels (id, sourceId, name, streamUrl, sortOrder, catchup, catchupDays) VALUES "
+            old.execSQL(channel + "(1, 1, 'ZDFneo', 'http://panel.test/1.ts', 0, 0, 0)")
+            old.execSQL(channel + "(2, 1, 'arte', 'http://panel.test/2.ts', 1, 0, 0)")
+            old.execSQL(channel + "(3, 1, 'Первый Канал', 'http://panel.test/3.ts', 2, 0, 0)")
+            old.execSQL("INSERT INTO movies (id, sourceId, name, streamUrl, sortOrder) VALUES (1, 1, 'ОДИН ДОМА', 'http://panel.test/m.mp4', 0)")
+            old.execSQL("INSERT INTO series (id, sourceId, name, sortOrder) VALUES (1, 1, 'Ἰλιάς', 0)")
+            old.version = version
+        } finally {
+            old.close()
+        }
+    }
+
+    private fun assertNameKeysAfterUpgrade() {
+        val db = openWithAllMigrations()
+        try {
+            val sqlite = openForAssertions(db)
+            fun texts(sql: String): List<String> = sqlite.prepare(sql).use { s ->
+                buildList { while (s.step()) add(s.getText(0)) }
+            }
+            assertEquals(listOf("arte", "zdfneo", "первый канал"), texts("SELECT nameKey FROM channels ORDER BY nameKey"))
+            assertEquals(listOf("один дома"), texts("SELECT nameKey FROM movies"))
+            assertEquals(listOf("ἰλιάς"), texts("SELECT nameKey FROM series"))
+            assertEquals(listOf("Первый Канал"), texts("SELECT name FROM channels WHERE id IN (SELECT rowid FROM channels_fts WHERE channels_fts MATCH 'первый*')"))
+            assertEquals(listOf("ОДИН ДОМА"), texts("SELECT name FROM movies WHERE id IN (SELECT rowid FROM movies_fts WHERE movies_fts MATCH 'один*')"))
+            listOf("index_channels_sourceId_nameKey", "index_channels_categoryId_nameKey", "index_movies_nameKey",
+                "index_movies_sourceId_nameKey", "index_series_categoryId_nameKey").forEach { assertIndexExists(sqlite, it) }
+            listOf("index_channels_sourceId_name", "index_movies_name", "index_series_categoryId_name")
+                .forEach { assertIndexMissing(sqlite, it) }
+        } finally {
+            db.close()
+        }
+    }
+
     @Test
     fun migrateVersion45To46_dropsSoftwareDecode_keepingQuirkRows() {
         context.deleteDatabase(DB_NAME)

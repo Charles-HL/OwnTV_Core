@@ -299,4 +299,12 @@
     <string name="common_weather_degrees_city"><xliff:g id="temperature">%1$d</xliff:g>° <xliff:g id="city">%2$s</xliff:g></string>
     <!-- Translators: Button that closes a prompt without acting on it, e.g. a programme reminder. -->
     <string name="common_dismiss">Dismiss</string>
+    <!-- Translators: Title of the full-screen notice shown once, while the app converts its internal database to a new version's format after an app update. This is NOT a playlist sync or download: do not translate it as updating, syncing or refreshing the library. -->
+    <string name="database_migration_title">Performing database migration</string>
+    <!-- Translators: Explanation under the database migration title. A one-time internal database conversion after an app update, not a playlist sync. -->
+    <string name="database_migration_body">This version stores your channels, movies and series in a new database format. This happens only once and can take up to 2 minutes on large playlists.</string>
+    <!-- Translators: Last line of the database migration notice on a TV. -->
+    <string name="database_migration_keep">Your playlists, favourites and history are kept. Nothing is downloaded again. Please don\'t turn off the TV or close the app.</string>
+    <!-- Translators: Last line of the database migration notice on a phone or tablet. -->
+    <string name="database_migration_keep_mobile">Your playlists, favourites and history are kept. Nothing is downloaded again. Please keep the app open.</string>
 </resources>
