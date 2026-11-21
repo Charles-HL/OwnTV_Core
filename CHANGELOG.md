@@ -27,6 +27,7 @@
 - **👤 Zoom, text size and recent searches per profile**
 - **📂 Subtitles: "Find in folder" and "Load matching subtitle automatically"**
 - **⏳ "Performing database migration" screen while an update converts the database**
+- **🎮 Player buttons: choose what D-pad Up/Down do in the live player** (community PR ahXN00/OwnTV#382 by @Pax24fr)
 
 ### 🐛 Fixes
 
