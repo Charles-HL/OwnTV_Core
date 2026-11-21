@@ -43,6 +43,11 @@
 - **🏈 Sports: a followed college team opens its own league, not the NFL**
 - **📊 Sports: a team page's table no longer disappears after a refresh**
 - **🌍 Central Kurdish: the rest of the app translated**
+- **📺 Catch-up on Flussonic with "Prefer HLS for catch-up": a past programme shows its full length and can be sought** (community PR #93 by @Sekator778)
+- **📅 Guide: a channel matched by hand gets its programmes and past days even when the downloaded guide is old** (reported in PR #380 by @Sekator778)
+- **📼 Catch-up: a channel's past days fill in from the provider's archive when the downloaded guide stopped early**
+- **📼 Catch-up: a programme ExoPlayer could not start no longer puts later catch-up on mpv into software decoding**
+- **📼 Catch-up: switching a programme from mpv to ExoPlayer starts it at once, in hardware, instead of after 12 seconds in software**
 - **⏪ Timeshift: leaving a channel while it is still opening no longer leaves its download running**
 - **⏱️ Timeshift: "Give up after" now counts the wait for the saved copy**
 - **▶️ Timeshift: "Resume" on a channel you came back to no longer freezes after half a minute**
