@@ -280,9 +280,9 @@
     <string name="sports_alert_corrected">Score corrigé · <xliff:g id="score">%1$s</xliff:g></string>
     <string name="sports_alert_detail"><xliff:g id="what">%1$s</xliff:g> · <xliff:g id="competition">%2$s</xliff:g></string>
     <plurals name="sports_reminder_title">
-        <item quantity="one">Coup d’envoi dans <xliff:g id="minutes">%1$d</xliff:g> min : <xliff:g id="match">%2$s</xliff:g></item>
-        <item quantity="many">Coup d’envoi dans <xliff:g id="minutes">%1$d</xliff:g> min : <xliff:g id="match">%2$s</xliff:g></item>
-        <item quantity="other">Coup d’envoi dans <xliff:g id="minutes">%1$d</xliff:g> min : <xliff:g id="match">%2$s</xliff:g></item>
+        <item quantity="one">Coup d’envoi dans <xliff:g id="minutes">%1$d</xliff:g> min : <xliff:g id="match">%2$s</xliff:g></item>
+        <item quantity="many">Coup d’envoi dans <xliff:g id="minutes">%1$d</xliff:g> min : <xliff:g id="match">%2$s</xliff:g></item>
+        <item quantity="other">Coup d’envoi dans <xliff:g id="minutes">%1$d</xliff:g> min : <xliff:g id="match">%2$s</xliff:g></item>
     </plurals>
     <string name="sports_reminder_on">Sur <xliff:g id="channel">%1$s</xliff:g></string>
     <plurals name="sports_reminder_on_more">
