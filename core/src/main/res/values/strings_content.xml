@@ -415,8 +415,8 @@
     <string name="content_epg_add_playlist">Add a playlist to see the guide.</string>
     <!-- Translators: Empty-state message when the EPG channel search returns no results. "query" is the search text. -->
     <string name="content_epg_no_channels_query">No guide channels found for \u201c<xliff:g id="query">%1$s</xliff:g>\u201d.</string>
-    <!-- Translators: Warning message when EPG data exists but channel IDs don\'t match. -->
-    <string name="content_epg_mismatched_ids">Guide data is stored, but its channel ids don\'t match your channels\' EPG ids \u2014 this EPG feed may belong to a different provider lineup.</string>
+    <!-- Translators: Shown in the guide when guide data exists but none of its channel ids match the channels in view. Auto-match EPG and Match EPG are the names of two buttons: use this language\'s translations of those two strings. -->
+    <string name="content_epg_mismatched_ids">Guide data is stored, but its channel ids don\'t match your channels\' EPG ids. Use Auto-match EPG, then match any channel still without a guide with Match EPG in its menu.</string>
     <!-- Translators: Status message when a channel has no catch-up support. -->
     <string name="content_epg_catchup_unavailable">Catch-up isn\'t available for this channel.</string>
     <!-- Translators: Status message when a channel is matched to EPG but no programmes are in the feed yet. -->

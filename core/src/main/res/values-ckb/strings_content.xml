@@ -218,7 +218,7 @@
     <string name="content_epg_filter_hides_all">هەموو کەناڵەکان بەهۆی فلتەری ئێستاوە شاراونەتەوە. ڕیزبەندی بگۆڕە بۆ بینینی ڕێنما.</string>
     <string name="content_epg_add_playlist">لیستی پەخشێک زیاد بکە بۆ بینینی ڕێنما.</string>
     <string name="content_epg_no_channels_query">هیچ کەناڵێکی ڕێنما نەدۆزرایەوە بۆ “<xliff:g id="query">%1$s</xliff:g>”.</string>
-    <string name="content_epg_mismatched_ids">داتای ڕێنما پاشەکەوت کراوە، بەڵام ناسنامەی کەناڵەکانی لەگەڵ ناسنامەی EPGی کەناڵەکانت ناگونجێت — لەوانەیە ئەم فیدی EPGـە هی دابینکەرێکی تر بێت.</string>
+    <string name="content_epg_mismatched_ids">داتای ڕێنما پاشەکەوت کراوە، بەڵام ناسنامەی کەناڵەکانی لەگەڵ ناسنامەی EPGی کەناڵەکانت ناگونجێت. “هاوتاکردنی خۆکاری EPG” بەکاربهێنە، پاشان هەر کەناڵێک کە هێشتا ڕێنمای نییە لە لیستەکەیدا بە “هاوتاکردنی EPG” هاوتای بکە.</string>
     <string name="content_epg_catchup_unavailable">Catch-up بۆ ئەم کەناڵە بەردەست نییە.</string>
     <string name="content_epg_matched_no_programmes">هاوتاکرا — بەڵام ئەم کەناڵی ڕێنمایە هێشتا هیچ بەرنامەیەکی ئێستای لە فیدی EPG دا نییە.</string>
     <string name="content_epg_add_playlist_first">سەرەتا لیستی پەخشێک زیاد بکە.</string>

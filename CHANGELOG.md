@@ -11,7 +11,7 @@
 
 ## core-1.0.72 — unreleased
 
-**Database v56 · Backup v28**
+**Database v57 · Backup v28**
 
 ### ✨ New features
 
@@ -28,10 +28,12 @@
 - **📂 Subtitles: "Find in folder" and "Load matching subtitle automatically"**
 - **⏳ "Performing database migration" screen while an update converts the database**
 - **🎮 Player buttons: choose what D-pad Up/Down do in the live player** (community PR ahXN00/OwnTV#382 by @Pax24fr)
+- **🖼️ Episodes keep the provider's own picture (ahXN00/OwnTV#367)**
 
 ### 🐛 Fixes
 
 - **📼 Catch-up: no more frame drops after a programme that failed to open**
+- **📅 Guide: the "ids don't match" notice says to use Auto-match EPG, then Match EPG**
 - **📼 Catch-up: HEVC programmes decode in hardware**
 - **🗂️ Xtream: items a category request returns without a category land in that category**
 - **🔤 Local subtitles: UTF-8 files no longer read as Chinese**

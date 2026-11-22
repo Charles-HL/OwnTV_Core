@@ -218,7 +218,7 @@
     <string name="content_epg_filter_hides_all">বর্তমান ফিল্টার সব চ্যানেল লুকিয়ে রাখছে। গাইড দেখতে সাজানোর ধরন বদলান।</string>
     <string name="content_epg_add_playlist">অনুষ্ঠান নির্দেশিকা দেখতে একটি প্লেলিস্ট যোগ করুন।</string>
     <string name="content_epg_no_channels_query">“<xliff:g id="query">%1$s</xliff:g>”-এর জন্য অনুষ্ঠান নির্দেশিকার কোনো চ্যানেল পাওয়া যায়নি।</string>
-    <string name="content_epg_mismatched_ids">অনুষ্ঠান নির্দেশিকার ডেটা সংরক্ষিত আছে, কিন্তু এর চ্যানেল IDগুলো আপনার চ্যানেলগুলোর EPG ID-এর সঙ্গে মেলে না — এই EPG ফিডটি অন্য কোনো প্রদানকারীর চ্যানেল তালিকার হতে পারে।</string>
+    <string name="content_epg_mismatched_ids">অনুষ্ঠান নির্দেশিকার ডেটা সংরক্ষিত আছে, কিন্তু এর চ্যানেল IDগুলো আপনার চ্যানেলগুলোর EPG ID-এর সঙ্গে মেলে না। “EPG স্বয়ংক্রিয়ভাবে মেলান” ব্যবহার করুন, তারপর যে চ্যানেলে এখনও নির্দেশিকা নেই সেটির মেনু থেকে “EPG মেলান” দিয়ে মিলিয়ে নিন।</string>
     <string name="content_epg_catchup_unavailable">এই চ্যানেলের জন্য ক্যাচ-আপ উপলভ্য নয়।</string>
     <string name="content_epg_matched_no_programmes">মিলেছে — কিন্তু অনুষ্ঠান নির্দেশিকার এই চ্যানেলে এখনো EPG ফিডে বর্তমান কোনো অনুষ্ঠান নেই।</string>
     <string name="content_epg_add_playlist_first">প্রথমে একটি প্লেলিস্ট যোগ করুন।</string>

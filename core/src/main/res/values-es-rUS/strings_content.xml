@@ -226,7 +226,7 @@
     <string name="content_epg_filter_hides_all">El filtro actual oculta todos los canales. Cambia el orden para ver la guía.</string>
     <string name="content_epg_add_playlist">Agrega una lista de reproducción para ver la guía.</string>
     <string name="content_epg_no_channels_query">No se encontraron canales de la guía para “<xliff:g id="query">%1$s</xliff:g>”.</string>
-    <string name="content_epg_mismatched_ids">Los datos de la guía están almacenados, pero sus ID de canal no coinciden con los ID de EPG de tus canales; es posible que esta fuente de EPG corresponda a la oferta de canales de otro proveedor.</string>
+    <string name="content_epg_mismatched_ids">Hay datos de la guía almacenados, pero sus ID de canal no coinciden con los ID de EPG de tus canales. Usa “Asociar EPG automáticamente” y luego asocia cada canal que siga sin guía con “Asociar EPG” en su menú.</string>
     <string name="content_epg_catchup_unavailable">La TV en diferido no está disponible para este canal.</string>
     <string name="content_epg_matched_no_programmes">Vinculado, pero este canal de la guía aún no tiene programas actuales en la fuente de EPG.</string>
     <string name="content_epg_add_playlist_first">Primero agrega una lista de reproducción.</string>

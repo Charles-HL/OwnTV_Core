@@ -226,7 +226,7 @@
     <string name="content_epg_filter_hides_all">Il filtro attuale nasconde tutti i canali. Cambia l’ordinamento per vedere la guida.</string>
     <string name="content_epg_add_playlist">Aggiungi una playlist per visualizzare la guida.</string>
     <string name="content_epg_no_channels_query">Nessun canale della guida trovato per “<xliff:g id="query">%1$s</xliff:g>”.</string>
-    <string name="content_epg_mismatched_ids">I dati della guida sono memorizzati, ma gli ID dei relativi canali non corrispondono agli ID EPG dei tuoi canali — questo flusso EPG potrebbe appartenere all\'offerta di canali di un altro fornitore.</string>
+    <string name="content_epg_mismatched_ids">I dati della guida sono memorizzati, ma gli ID dei relativi canali non corrispondono agli ID EPG dei tuoi canali. Usa “Associa automaticamente EPG”, poi associa ogni canale ancora senza guida con “Associa EPG” nel suo menu.</string>
     <string name="content_epg_catchup_unavailable">La visione in differita non è disponibile per questo canale.</string>
     <string name="content_epg_matched_no_programmes">Associazione effettuata — ma questo canale della guida non ha ancora programmi correnti nel flusso EPG.</string>
     <string name="content_epg_add_playlist_first">Aggiungi prima una playlist.</string>

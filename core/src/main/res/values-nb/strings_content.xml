@@ -218,7 +218,7 @@
     <string name="content_epg_filter_hides_all">Alle kanaler skjules av det gjeldende filteret. Endre sorteringen for å se guiden.</string>
     <string name="content_epg_add_playlist">Legg til en spilleliste for å se programoversikten.</string>
     <string name="content_epg_no_channels_query">Fant ingen kanaler i programoversikten for «<xliff:g id="query">%1$s</xliff:g>».</string>
-    <string name="content_epg_mismatched_ids">Programoversiktsdata er lagret, men kanal-ID-ene samsvarer ikke med EPG-ID-ene til kanalene dine — denne EPG-strømmen kan tilhøre kanalutvalget til en annen leverandør.</string>
+    <string name="content_epg_mismatched_ids">Programoversiktsdata er lagret, men kanal-ID-ene samsvarer ikke med EPG-ID-ene til kanalene dine. Bruk «Match EPG automatisk», og match deretter hver kanal som fortsatt mangler programoversikt, med «Match EPG» i menyen til kanalen.</string>
     <string name="content_epg_catchup_unavailable">Arkiv er ikke tilgjengelig for denne kanalen.</string>
     <string name="content_epg_matched_no_programmes">Matchet — men denne kanalen i programoversikten har foreløpig ingen aktuelle programmer i EPG-strømmen.</string>
     <string name="content_epg_add_playlist_first">Legg til en spilleliste først.</string>

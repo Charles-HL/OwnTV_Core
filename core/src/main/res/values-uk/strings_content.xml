@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="content_epg_match_button">Автододавання EPG</string>
+    <string name="content_epg_match_button">Автозіставлення EPG</string>
     <string name="content_epg_now_short">Зараз</string>
     <string name="content_programmes_later">Пізніше</string>
     <string name="content_catchup">Архів</string>
@@ -237,7 +237,7 @@
     <string name="content_epg_filter_hides_all">Усі канали приховано поточним фільтром. Змініть сортування, щоб побачити програму передач.</string>
     <string name="content_epg_add_playlist">Додайте плейлист, щоб побачити програму передач.</string>
     <string name="content_epg_no_channels_query">Каналів програми передач за запитом «<xliff:g id="query">%1$s</xliff:g>» не знайдено.</string>
-    <string name="content_epg_mismatched_ids">Дані програми передач збережено, але ідентифікатори їхніх каналів не збігаються з EPG-ідентифікаторами ваших каналів — цей EPG-потік, імовірно, належить до іншого набору каналів провайдера.</string>
+    <string name="content_epg_mismatched_ids">Дані програми передач збережено, але ідентифікатори їхніх каналів не збігаються з EPG-ідентифікаторами ваших каналів. Скористайтеся «Автозіставлення EPG», а потім зіставте кожен канал, який досі без програми, через «Зіставити EPG» у його меню.</string>
     <string name="content_epg_catchup_unavailable">Архів недоступний для цього каналу.</string>
     <string name="content_epg_matched_no_programmes">Зіставлено, але в EPG-потоці для цього каналу ще немає поточних передач.</string>
     <string name="content_epg_add_playlist_first">Спершу додайте плейлист.</string>

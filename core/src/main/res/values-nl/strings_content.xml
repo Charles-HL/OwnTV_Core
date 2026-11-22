@@ -218,7 +218,7 @@
     <string name="content_epg_filter_hides_all">Alle zenders worden verborgen door het huidige filter. Wijzig de sortering om de gids te zien.</string>
     <string name="content_epg_add_playlist">Voeg een afspeellijst toe om de programmagids te bekijken.</string>
     <string name="content_epg_no_channels_query">Geen gidszenders gevonden voor “<xliff:g id="query">%1$s</xliff:g>”.</string>
-    <string name="content_epg_mismatched_ids">Er zijn gidsgegevens opgeslagen, maar de zender-ID\'s komen niet overeen met de EPG-ID\'s van je zenders — deze EPG-feed hoort mogelijk bij het zenderaanbod van een andere aanbieder.</string>
+    <string name="content_epg_mismatched_ids">Er zijn gidsgegevens opgeslagen, maar de zender-ID\'s komen niet overeen met de EPG-ID\'s van je zenders. Gebruik “EPG automatisch koppelen” en koppel daarna elke zender die nog geen gids heeft met “EPG koppelen” in het menu van die zender.</string>
     <string name="content_epg_catchup_unavailable">Terugkijken is niet beschikbaar voor deze zender.</string>
     <string name="content_epg_matched_no_programmes">Gekoppeld — maar deze gidszender bevat nog geen actuele programma\'s in de EPG-feed.</string>
     <string name="content_epg_add_playlist_first">Voeg eerst een afspeellijst toe.</string>
