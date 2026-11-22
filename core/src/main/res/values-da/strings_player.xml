@@ -8,6 +8,7 @@
     <string name="player_zoom_original">Original (1:1)</string>
     <string name="player_zoom_force_16_9">Tving 16:9</string>
     <string name="player_zoom_force_4_3">Tving 4:3</string>
+    <string name="player_zoom_force_20_9">Tving 20:9</string>
     <string name="player_mini_top_left">Øverst til venstre</string>
     <string name="player_mini_top_center">Øverst i midten</string>
     <string name="player_mini_top_right">Øverst til højre</string>

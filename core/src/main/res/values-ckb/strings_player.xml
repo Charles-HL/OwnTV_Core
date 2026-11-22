@@ -8,6 +8,7 @@
     <string name="player_zoom_original">ڕەسەن (1:1)</string>
     <string name="player_zoom_force_16_9">بە زۆر 16:9</string>
     <string name="player_zoom_force_4_3">بە زۆر 4:3</string>
+    <string name="player_zoom_force_20_9">بە زۆر 20:9</string>
     <string name="player_mini_top_left">سەرەوەی چەپ</string>
     <string name="player_mini_top_center">ناوەڕاستی سەرەوە</string>
     <string name="player_mini_top_right">سەرەوەی ڕاست</string>

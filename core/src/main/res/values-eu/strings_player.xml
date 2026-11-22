@@ -8,6 +8,7 @@
     <string name="player_zoom_original">Jatorrizkoa (1:1)</string>
     <string name="player_zoom_force_16_9">Behartu 16:9</string>
     <string name="player_zoom_force_4_3">Behartu 4:3</string>
+    <string name="player_zoom_force_20_9">Behartu 20:9</string>
     <string name="player_mini_top_left">Goian ezkerrean</string>
     <string name="player_mini_top_center">Goian erdian</string>
     <string name="player_mini_top_right">Goian eskuinean</string>

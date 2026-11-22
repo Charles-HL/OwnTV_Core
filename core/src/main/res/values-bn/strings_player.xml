@@ -8,6 +8,7 @@
     <string name="player_zoom_original">আসল (1:1)</string>
     <string name="player_zoom_force_16_9">16:9 বাধ্যতামূলক করুন</string>
     <string name="player_zoom_force_4_3">4:3 বাধ্যতামূলক করুন</string>
+    <string name="player_zoom_force_20_9">20:9 বাধ্যতামূলক করুন</string>
     <string name="player_mini_top_left">ওপরে বাঁয়ে</string>
     <string name="player_mini_top_center">ওপরে মাঝখানে</string>
     <string name="player_mini_top_right">ওপরে ডানে</string>

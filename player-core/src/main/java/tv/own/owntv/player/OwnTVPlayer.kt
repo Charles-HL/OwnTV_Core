@@ -123,10 +123,17 @@ data class PlaylistItem(
 @Immutable
 data class NavState(val hasPrev: Boolean, val hasNext: Boolean)
 
-/** Video scaling modes exposed in the player's zoom menu. */
-enum class ZoomMode(@param:androidx.annotation.StringRes val labelRes: Int) {
+/**
+ * Video scaling modes exposed in the player's zoom menu. [forcedAspect] is the picture shape (w/h) a
+ * Force mode shows the video at, letterboxed to fit; null for the modes that follow the video's own
+ * shape. Force 20:9 is for wide films stored squeezed into a 16:9 frame, which no zoom can undo.
+ */
+enum class ZoomMode(@param:androidx.annotation.StringRes val labelRes: Int, val forcedAspect: Float? = null) {
     FIT(tv.own.owntv.core.R.string.player_zoom_fit_screen), FILL(tv.own.owntv.core.R.string.player_zoom_fill_crop), STRETCH(tv.own.owntv.core.R.string.player_zoom_stretch),
-    ORIGINAL(tv.own.owntv.core.R.string.player_zoom_original), FORCE_16_9(tv.own.owntv.core.R.string.player_zoom_force_16_9), FORCE_4_3(tv.own.owntv.core.R.string.player_zoom_force_4_3),
+    ORIGINAL(tv.own.owntv.core.R.string.player_zoom_original),
+    FORCE_16_9(tv.own.owntv.core.R.string.player_zoom_force_16_9, 16f / 9f),
+    FORCE_4_3(tv.own.owntv.core.R.string.player_zoom_force_4_3, 4f / 3f),
+    FORCE_20_9(tv.own.owntv.core.R.string.player_zoom_force_20_9, 20f / 9f),
 }
 
 /**

@@ -8,6 +8,7 @@
     <string name="player_zoom_original">Оригінал (1:1)</string>
     <string name="player_zoom_force_16_9">Примусово 16:9</string>
     <string name="player_zoom_force_4_3">Примусово 4:3</string>
+    <string name="player_zoom_force_20_9">Примусово 20:9</string>
     <string name="player_mini_top_left">Угорі ліворуч</string>
     <string name="player_mini_top_center">Угорі по центру</string>
     <string name="player_mini_top_right">Угорі праворуч</string>

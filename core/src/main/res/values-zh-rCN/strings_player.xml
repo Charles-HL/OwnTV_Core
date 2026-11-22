@@ -8,6 +8,7 @@
     <string name="player_zoom_original">原始尺寸（1:1）</string>
     <string name="player_zoom_force_16_9">强制 16:9</string>
     <string name="player_zoom_force_4_3">强制 4:3</string>
+    <string name="player_zoom_force_20_9">强制 20:9</string>
     <string name="player_mini_top_left">左上</string>
     <string name="player_mini_top_center">顶部居中</string>
     <string name="player_mini_top_right">右上</string>

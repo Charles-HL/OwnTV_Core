@@ -8,6 +8,7 @@
     <string name="player_zoom_original">Original (1:1)</string>
     <string name="player_zoom_force_16_9">Tvinga fram 16:9</string>
     <string name="player_zoom_force_4_3">Tvinga fram 4:3</string>
+    <string name="player_zoom_force_20_9">Tvinga fram 20:9</string>
     <string name="player_mini_top_left">Överst till vänster</string>
     <string name="player_mini_top_center">Överst i mitten</string>
     <string name="player_mini_top_right">Överst till höger</string>

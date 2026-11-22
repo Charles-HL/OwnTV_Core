@@ -9,7 +9,7 @@
 > in one bolded line of its own (e.g. **Database v46 · Backup v24 · Breaking**). The detail — what,
 > why, files and verification — belongs in the commit message, never here.
 
-## core-1.0.72 — unreleased
+## core-1.0.72 — 2026-11-22
 
 **Database v57 · Backup v28**
 
@@ -29,9 +29,11 @@
 - **⏳ "Performing database migration" screen while an update converts the database**
 - **🎮 Player buttons: choose what D-pad Up/Down do in the live player** (community PR ahXN00/OwnTV#382 by @Pax24fr)
 - **🖼️ Episodes keep the provider's own picture (ahXN00/OwnTV#367)**
+- **🖥️ Player zoom: Force 20:9** (ahXN00/OwnTV#378)
 
 ### 🐛 Fixes
 
+- **🔒 A Merge restore or a local sync no longer removes a category lock**
 - **📼 Catch-up: no more frame drops after a programme that failed to open**
 - **📅 Guide: the "ids don't match" notice says to use Auto-match EPG, then Match EPG**
 - **📼 Catch-up: HEVC programmes decode in hardware**

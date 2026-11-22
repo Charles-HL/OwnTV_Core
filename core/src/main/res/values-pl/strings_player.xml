@@ -8,6 +8,7 @@
     <string name="player_zoom_original">Oryginalny rozmiar (1:1)</string>
     <string name="player_zoom_force_16_9">Wymuś 16:9</string>
     <string name="player_zoom_force_4_3">Wymuś 4:3</string>
+    <string name="player_zoom_force_20_9">Wymuś 20:9</string>
     <string name="player_mini_top_left">U góry po lewej</string>
     <string name="player_mini_top_center">U góry na środku</string>
     <string name="player_mini_top_right">U góry po prawej</string>

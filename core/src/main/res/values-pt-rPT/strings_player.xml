@@ -8,6 +8,7 @@
     <string name="player_zoom_original">Original (1:1)</string>
     <string name="player_zoom_force_16_9">Forçar 16:9</string>
     <string name="player_zoom_force_4_3">Forçar 4:3</string>
+    <string name="player_zoom_force_20_9">Forçar 20:9</string>
     <string name="player_mini_top_left">Canto superior esquerdo</string>
     <string name="player_mini_top_center">Centro superior</string>
     <string name="player_mini_top_right">Canto superior direito</string>

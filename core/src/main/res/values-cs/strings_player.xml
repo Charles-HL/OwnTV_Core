@@ -8,6 +8,7 @@
     <string name="player_zoom_original">Původní (1:1)</string>
     <string name="player_zoom_force_16_9">Vynutit 16:9</string>
     <string name="player_zoom_force_4_3">Vynutit 4:3</string>
+    <string name="player_zoom_force_20_9">Vynutit 20:9</string>
     <string name="player_mini_top_left">Vlevo nahoře</string>
     <string name="player_mini_top_center">Uprostřed nahoře</string>
     <string name="player_mini_top_right">Vpravo nahoře</string>

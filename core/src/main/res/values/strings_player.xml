@@ -16,6 +16,8 @@
     <string name="player_zoom_force_16_9">Force 16:9</string>
     <!-- Translators: Zoom mode option. Forces a 4:3 aspect ratio. -->
     <string name="player_zoom_force_4_3">Force 4:3</string>
+    <!-- Translators: Zoom mode option. Forces a 20:9 aspect ratio, for wide films stored squeezed into a 16:9 frame. -->
+    <string name="player_zoom_force_20_9">Force 20:9</string>
     <!-- Translators: Mini-player docking position label in the mini-player position settings. -->
     <string name="player_mini_top_left">Top left</string>
     <!-- Translators: Mini-player docking position label. -->

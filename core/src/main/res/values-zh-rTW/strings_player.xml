@@ -8,6 +8,7 @@
     <string name="player_zoom_original">原始大小（1:1）</string>
     <string name="player_zoom_force_16_9">強制設為 16:9</string>
     <string name="player_zoom_force_4_3">強制設為 4:3</string>
+    <string name="player_zoom_force_20_9">強制設為 20:9</string>
     <string name="player_mini_top_left">左上</string>
     <string name="player_mini_top_center">上方中央</string>
     <string name="player_mini_top_right">右上</string>

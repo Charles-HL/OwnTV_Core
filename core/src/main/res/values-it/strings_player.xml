@@ -8,6 +8,7 @@
     <string name="player_zoom_original">Originale (1:1)</string>
     <string name="player_zoom_force_16_9">Forza 16:9</string>
     <string name="player_zoom_force_4_3">Forza 4:3</string>
+    <string name="player_zoom_force_20_9">Forza 20:9</string>
     <string name="player_mini_top_left">In alto a sinistra</string>
     <string name="player_mini_top_center">In alto al centro</string>
     <string name="player_mini_top_right">In alto a destra</string>

@@ -8,6 +8,7 @@
     <string name="player_zoom_original">Orijinal (1:1)</string>
     <string name="player_zoom_force_16_9">16:9\'a zorla</string>
     <string name="player_zoom_force_4_3">4:3\'e zorla</string>
+    <string name="player_zoom_force_20_9">20:9\'a zorla</string>
     <string name="player_mini_top_left">Sol üst</string>
     <string name="player_mini_top_center">Üst orta</string>
     <string name="player_mini_top_right">Sağ üst</string>
