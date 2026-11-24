@@ -33,7 +33,7 @@
     <string name="settings_use_proxy">Använd proxy</string>
     <string name="settings_proxy_description">Skicka all trafik och uppspelning från OwnTV via en HTTP-proxy.</string>
     <string name="settings_host">Värd</string>
-    <string name="settings_proxy_host_hint">proxy.example.com</string>
+    <string name="settings_proxy_host_hint">proxy.exempel.se</string>
     <string name="settings_port">Port</string>
     <string name="settings_proxy_port_hint">8080</string>
     <string name="settings_username_optional">Användarnamn (valfritt)</string>
