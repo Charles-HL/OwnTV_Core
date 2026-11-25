@@ -1,5 +1,10 @@
 package tv.own.owntv.player
 
+import androidx.media3.common.C
+import androidx.media3.common.Format
+import androidx.media3.common.MimeTypes
+import androidx.media3.common.TrackGroup
+import androidx.media3.common.Tracks
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
 import org.junit.Test
@@ -27,6 +32,35 @@ class VideoQualityTest {
         assertEquals(listOf(1080, 720, 360), VideoQuality.heights(listOf(720, 1080, 360, 720, 0)))
         assertEquals(emptyList<Int>(), VideoQuality.heights(listOf(1080, 1080)))
     }
+
+    @Test
+    fun `live variants of the same height and bitrate remain independently selectable`() {
+        val group = videoGroup("hls", video("primary", 1080), video("backup", 1080))
+        val tracks = Tracks(listOf(group))
+        val variants = VideoQuality.variantsOf(tracks)
+
+        assertEquals(listOf(1080, 1080), variants.map { it.height })
+        assertEquals(listOf(0), VideoQuality.overrideFor(tracks, variants[0])?.trackIndices)
+        assertEquals(listOf(1), VideoQuality.overrideFor(tracks, variants[1])?.trackIndices)
+        assertEquals(group.mediaTrackGroup, VideoQuality.overrideFor(tracks, variants[1])?.mediaTrackGroup)
+        assertEquals(emptyList<Int>(), VideoQuality.heightsOf(tracks))
+        assertNull(VideoQuality.overrideFor(Tracks(listOf(videoGroup("new", video("other", 1080)))), variants[1]))
+    }
+
+    @Test
+    fun `live variants omit unsupported tracks and require a choice`() {
+        val group = TrackGroup("hls", video("primary", 1080), video("unsupported", 720))
+        val tracks = Tracks(listOf(Tracks.Group(
+            group, false, intArrayOf(C.FORMAT_HANDLED, C.FORMAT_UNSUPPORTED_SUBTYPE), booleanArrayOf(false, false),
+        )))
+        assertEquals(emptyList<VideoQuality.Variant>(), VideoQuality.variantsOf(tracks))
+    }
+
+    private fun video(id: String, height: Int): Format = Format.Builder()
+        .setId(id).setSampleMimeType(MimeTypes.VIDEO_H264).setHeight(height).setPeakBitrate(5_000_000).build()
+
+    private fun videoGroup(id: String, vararg formats: Format): Tracks.Group =
+        Tracks.Group(TrackGroup(id, *formats), false, IntArray(formats.size) { C.FORMAT_HANDLED }, BooleanArray(formats.size))
 
     @Test
     fun `mpv takes the pick, else the tallest within the limit, else the smallest`() {

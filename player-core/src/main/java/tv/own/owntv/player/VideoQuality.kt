@@ -41,6 +41,32 @@ object VideoQuality {
         },
     )
 
+    /** A selectable video track. The group and index distinguish renditions with identical metadata. */
+    data class Variant internal constructor(
+        val height: Int,
+        val bitrate: Int,
+        internal val groupId: String,
+        internal val trackIndex: Int,
+    )
+
+    internal fun variantsOf(tracks: Tracks): List<Variant> =
+        tracks.groups.filter { it.type == C.TRACK_TYPE_VIDEO }.flatMap { group ->
+            (0 until group.length).mapNotNull { index -> variantAt(group, index) }
+        }.sortedWith(compareByDescending<Variant> { it.height }.thenByDescending { it.bitrate })
+            .takeIf { it.size > 1 }.orEmpty()
+
+    internal fun overrideFor(tracks: Tracks, variant: Variant): TrackSelectionOverride? =
+        tracks.groups.firstOrNull { group ->
+            group.type == C.TRACK_TYPE_VIDEO && group.mediaTrackGroup.id == variant.groupId &&
+                variant.trackIndex in 0 until group.length && variantAt(group, variant.trackIndex) == variant
+        }?.let { TrackSelectionOverride(it.mediaTrackGroup, variant.trackIndex) }
+
+    private fun variantAt(group: Tracks.Group, index: Int): Variant? {
+        val format = group.getTrackFormat(index)
+        if (format.height <= 0 || !group.isTrackSupported(index, true)) return null
+        return Variant(format.height, format.bitrate, group.mediaTrackGroup.id, index)
+    }
+
     /** ExoPlayer: force the best-bitrate playable track of exactly [height], or null when none has it. */
     fun overrideFor(tracks: Tracks, height: Int): TrackSelectionOverride? {
         for (g in tracks.groups) {

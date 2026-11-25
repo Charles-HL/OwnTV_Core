@@ -147,6 +147,10 @@ class LivePreviewEngine(
     private val connectivityNow = connectivity
     private val _videoQualities = MutableStateFlow<List<Int>>(emptyList())
     override val videoQualities: StateFlow<List<Int>> = _videoQualities.asStateFlow()
+    private val _videoVariants = MutableStateFlow<List<VideoQuality.Variant>>(emptyList())
+    val videoVariants: StateFlow<List<VideoQuality.Variant>> = _videoVariants.asStateFlow()
+    private val _videoVariantPick = MutableStateFlow<VideoQuality.Variant?>(null)
+    val videoVariantPick: StateFlow<VideoQuality.Variant?> = _videoVariantPick.asStateFlow()
     private val _videoQualityPick = MutableStateFlow<Int?>(null)
     override val videoQualityPick: StateFlow<Int?> = _videoQualityPick.asStateFlow()
     /** Settings → background playback; picks the player's wake mode. */
@@ -1731,8 +1735,10 @@ class LivePreviewEngine(
             applyAudioDelay(baseAudioDelayMs)
             _audioDelayRemembered.value = false
             _videoQualityPick.value = null // a Quality pick belongs to the channel it was made on
+            _videoVariantPick.value = null
         }
         _videoQualities.value = emptyList()
+        _videoVariants.value = emptyList()
         applyRememberedPrefs(meta.contentKey ?: url)
         recallTracks(meta.contentKey ?: url)
         // Apple FairPlay: no Android device can decrypt it, so opening it would only end in a licence
@@ -1844,25 +1850,39 @@ class LivePreviewEngine(
             VideoQuality.cap(qualityMaxHeight, qualityMobileMaxHeight, connectivityNow.isMeteredNow()),
         )
         val pick = _videoQualityPick.value?.takeIf { h -> maxVideoHeight.let { it == null || h <= it } }
+        val variant = _videoVariantPick.value?.takeIf {
+            maxVideoHeight?.let { limit -> it.height <= limit } ?: true
+        }
         p.trackSelectionParameters = p.trackSelectionParameters.buildUpon()
             .apply {
                 if (height == null) clearVideoSizeConstraints() else setMaxVideoSize(Int.MAX_VALUE, height)
                 clearOverridesOfType(C.TRACK_TYPE_VIDEO)
-                pick?.let { VideoQuality.overrideFor(p.currentTracks, it) }?.let { addOverride(it) }
+                val selection = variant?.let { VideoQuality.overrideFor(p.currentTracks, it) }
+                    ?: pick?.let { VideoQuality.overrideFor(p.currentTracks, it) }
+                selection?.let { addOverride(it) }
             }
             .build()
     }
 
     /** The Quality menu: [height] for this channel, or null for Auto (the Settings limit). */
     override fun selectVideoQuality(height: Int?) {
+        _videoVariantPick.value = null
         _videoQualityPick.value = height
+        applyMaxVideoHeight()
+    }
+
+    /** Select a specific live video track, or null to return to Auto. */
+    fun selectVideoVariant(variant: VideoQuality.Variant?) {
+        if (variant != null && variant !in _videoVariants.value) return
+        _videoQualityPick.value = null
+        _videoVariantPick.value = variant
         applyMaxVideoHeight()
     }
 
     /** A pick made before this stream's tracks were known (a retry of the same channel) lands here. */
     private fun ensureQualityPick(tracks: androidx.media3.common.Tracks) {
         val p = player ?: return
-        if (_videoQualityPick.value == null) return
+        if (_videoQualityPick.value == null && _videoVariantPick.value == null) return
         if (p.trackSelectionParameters.overrides.keys.any { it.type == C.TRACK_TYPE_VIDEO }) return
         if (tracks.groups.none { it.type == C.TRACK_TYPE_VIDEO }) return
         applyMaxVideoHeight()
@@ -2980,6 +3000,14 @@ class LivePreviewEngine(
      *  subtitles (multi-track live channels, or a VOD file imported via M3U). Mirrors [ExoSubtitleEngine]. */
     private fun rebuildTracks(tracks: androidx.media3.common.Tracks) {
         _videoQualities.value = VideoQuality.heightsOf(tracks)
+        _videoVariants.value = VideoQuality.variantsOf(tracks)
+        val variant = _videoVariantPick.value
+        if (variant != null && tracks.groups.any { it.type == C.TRACK_TYPE_VIDEO } &&
+            VideoQuality.overrideFor(tracks, variant) == null
+        ) {
+            _videoVariantPick.value = null
+            applyMaxVideoHeight()
+        }
         ensureQualityPick(tracks)
         if (builtTunneled) LiveDiagnosticsLog.event("tunneled playback requested, active=${player?.isTunnelingEnabled == true}")
         // A preferred subtitle language makes Media3 select a matching text track on its own. The cue
