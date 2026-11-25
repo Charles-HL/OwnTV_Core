@@ -25,6 +25,8 @@
     <string name="settings_vod_reconnects_value" translatable="false">%1$d×</string>
     <!-- A picture height as a quality label, "1080p": a number and a letter, the same in every language. -->
     <string name="settings_video_quality_lines" translatable="false">%1$dp</string>
+    <!-- An ordinal after the resolution when several tracks share it, e.g. "1080p · 2". -->
+    <string name="player_quality_numbered_variant" translatable="false">%1$s · %2$d</string>
     <!-- An episode in the series page's list, "3. It's Like a Game": the number (already localized) and the title. -->
     <string name="content_episode_numbered" translatable="false">%1$s. %2$s</string>
     <!-- Names of audio outputs: the same in every language. -->

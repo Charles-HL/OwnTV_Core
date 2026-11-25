@@ -1883,8 +1883,9 @@ class LivePreviewEngine(
     private fun ensureQualityPick(tracks: androidx.media3.common.Tracks) {
         val p = player ?: return
         if (_videoQualityPick.value == null && _videoVariantPick.value == null) return
-        if (p.trackSelectionParameters.overrides.keys.any { it.type == C.TRACK_TYPE_VIDEO }) return
-        if (tracks.groups.none { it.type == C.TRACK_TYPE_VIDEO }) return
+        val videoGroups = tracks.groups.filter { it.type == C.TRACK_TYPE_VIDEO }
+        if (videoGroups.isEmpty()) return
+        if (videoGroups.any { it.mediaTrackGroup in p.trackSelectionParameters.overrides }) return
         applyMaxVideoHeight()
     }
 

@@ -42,6 +42,7 @@ object VideoQuality {
     )
 
     /** A selectable video track. The group and index distinguish renditions with identical metadata. */
+    @ConsistentCopyVisibility
     data class Variant internal constructor(
         val height: Int,
         val bitrate: Int,
